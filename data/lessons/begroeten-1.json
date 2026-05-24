@@ -1,0 +1,163 @@
+{
+  "id": "begroeten-1",
+  "moduleId": "begroeten",
+  "title": "Begroeten",
+  "titleAr": "التحيات الأساسية",
+  "emoji": "👋",
+  "description": "Leer hoe je hallo zegt en hoe het gaat!",
+  "xpReward": 75,
+  "vocabulary": [
+    {
+      "id": "v1",
+      "dutch": "Hallo",
+      "arabic": "مرحبا",
+      "darija": "سلام",
+      "transliteration": "Marhaba",
+      "darijaTransliteration": "Salam",
+      "emoji": "👋"
+    },
+    {
+      "id": "v2",
+      "dutch": "Hoe gaat het?",
+      "arabic": "كيف حالك؟",
+      "darija": "لاباس؟",
+      "transliteration": "Kayfa haluk?",
+      "darijaTransliteration": "Labas?",
+      "emoji": "🤔"
+    },
+    {
+      "id": "v3",
+      "dutch": "Goed, dank je",
+      "arabic": "بخير، شكراً",
+      "darija": "لاباس الحمدلله",
+      "transliteration": "Bikheir, shukran",
+      "darijaTransliteration": "Labas hamdullah",
+      "emoji": "😊"
+    },
+    {
+      "id": "v4",
+      "dutch": "Dank je wel",
+      "arabic": "شكراً جزيلاً",
+      "darija": "شكراً",
+      "transliteration": "Shukran jazeelan",
+      "darijaTransliteration": "Shukran",
+      "emoji": "🙏"
+    },
+    {
+      "id": "v5",
+      "dutch": "Tot ziens",
+      "arabic": "مع السلامة",
+      "darija": "بسلامة",
+      "transliteration": "Ma'a al-salama",
+      "darijaTransliteration": "Bslama",
+      "emoji": "✌️"
+    }
+  ],
+  "listeningExercises": [
+    {
+      "id": "l1",
+      "type": "multiple-choice",
+      "questionDutch": "Wat betekent dit?",
+      "audioWord": "Marhaba",
+      "audioArabic": "مرحبا",
+      "audioDarija": "سلام",
+      "options": [
+        { "text": "Hallo", "arabic": "مرحبا", "isCorrect": true },
+        { "text": "Tot ziens", "arabic": "مع السلامة", "isCorrect": false },
+        { "text": "Dank je", "arabic": "شكراً", "isCorrect": false },
+        { "text": "Hoe gaat het?", "arabic": "كيف حالك؟", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "l2",
+      "type": "multiple-choice",
+      "questionDutch": "Wat betekent dit?",
+      "audioWord": "Shukran",
+      "audioArabic": "شكراً",
+      "audioDarija": "شكراً",
+      "options": [
+        { "text": "Hallo", "arabic": "مرحبا", "isCorrect": false },
+        { "text": "Tot ziens", "arabic": "مع السلامة", "isCorrect": false },
+        { "text": "Dank je", "arabic": "شكراً", "isCorrect": true },
+        { "text": "Goed", "arabic": "بخير", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "l3",
+      "type": "multiple-choice",
+      "questionDutch": "Hoe zeg je 'Tot ziens' in Darija?",
+      "audioWord": "Bslama",
+      "audioArabic": "مع السلامة",
+      "audioDarija": "بسلامة",
+      "options": [
+        { "text": "Salam", "arabic": "سلام", "isCorrect": false },
+        { "text": "Bslama", "arabic": "بسلامة", "isCorrect": true },
+        { "text": "Labas", "arabic": "لاباس", "isCorrect": false },
+        { "text": "Shukran", "arabic": "شكراً", "isCorrect": false }
+      ]
+    }
+  ],
+  "speakingExercises": [
+    {
+      "id": "s1",
+      "dutch": "Hallo",
+      "arabic": "مرحبا",
+      "darija": "سلام",
+      "transliteration": "Marhaba",
+      "darijaTransliteration": "Salam",
+      "prompt": "Zeg hallo in het Arabisch!"
+    },
+    {
+      "id": "s2",
+      "dutch": "Hoe gaat het?",
+      "arabic": "كيف حالك؟",
+      "darija": "لاباس؟",
+      "transliteration": "Kayfa haluk?",
+      "darijaTransliteration": "Labas?",
+      "prompt": "Vraag hoe het gaat!"
+    },
+    {
+      "id": "s3",
+      "dutch": "Dank je wel",
+      "arabic": "شكراً جزيلاً",
+      "darija": "شكراً",
+      "transliteration": "Shukran jazeelan",
+      "darijaTransliteration": "Shukran",
+      "prompt": "Zeg dank je wel!"
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "adult",
+      "speakerName": "Oom Ahmed",
+      "dutch": "Hallo! Hoe gaat het?",
+      "arabic": "مرحبا! كيف حالك؟",
+      "darija": "سلام! لاباس؟",
+      "transliteration": "Salam! Labas?"
+    },
+    {
+      "speaker": "child",
+      "speakerName": "Jij",
+      "dutch": "Goed, dank je wel!",
+      "arabic": "بخير، شكراً جزيلاً!",
+      "darija": "لاباس الحمدلله!",
+      "transliteration": "Labas hamdullah!"
+    },
+    {
+      "speaker": "adult",
+      "speakerName": "Oom Ahmed",
+      "dutch": "Tot ziens!",
+      "arabic": "مع السلامة!",
+      "darija": "بسلامة!",
+      "transliteration": "Bslama!"
+    },
+    {
+      "speaker": "child",
+      "speakerName": "Jij",
+      "dutch": "Tot ziens!",
+      "arabic": "مع السلامة!",
+      "darija": "بسلامة!",
+      "transliteration": "Bslama!"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Nunito', 'system-ui', 'sans-serif'],
+        arabic: ['Cairo', 'Amiri', 'Arial', 'sans-serif'],
+      },
+      colors: {
+        brand: {
+          50:  '#FFFBF0',
+          100: '#FEF3D0',
+          200: '#FDE68A',
+          300: '#FCD34D',
+          400: '#FBBF24',
+          500: '#F59E0B',
+          600: '#D97706',
+          700: '#B45309',
+          800: '#92400E',
+          900: '#78350F',
+        },
+        terracotta: {
+          50:  '#FFF7ED',
+          100: '#FFEDD5',
+          200: '#FED7AA',
+          300: '#FDBA74',
+          400: '#FB923C',
+          500: '#F97316',
+          600: '#EA580C',
+          700: '#C2410C',
+          800: '#9A3412',
+          900: '#7C2D12',
+        },
+        teal: {
+          50:  '#F0FDFA',
+          100: '#CCFBF1',
+          200: '#99F6E4',
+          300: '#5EEAD4',
+          400: '#2DD4BF',
+          500: '#14B8A6',
+          600: '#0D9488',
+          700: '#0F766E',
+          800: '#115E59',
+          900: '#134E4A',
+        },
+        sand: {
+          50:  '#FEFCE8',
+          100: '#FEF9C3',
+          200: '#FEF08A',
+          300: '#FDE047',
+          400: '#FACC15',
+          500: '#EAB308',
+          600: '#CA8A04',
+          700: '#A16207',
+          800: '#854D0E',
+          900: '#713F12',
+        },
+        morocco: {
+          red:   '#C1272D',
+          green: '#006233',
+          gold:  '#FFB81C',
+          blue:  '#0047AB',
+        },
+      },
+      borderRadius: {
+        '4xl': '2rem',
+        '5xl': '2.5rem',
+      },
+      animation: {
+        'bounce-slow': 'bounce 2s infinite',
+        'pulse-slow': 'pulse 3s infinite',
+        'wiggle': 'wiggle 0.5s ease-in-out',
+        'float': 'float 3s ease-in-out infinite',
+        'star-pop': 'starPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        starPop: {
+          '0%': { transform: 'scale(0) rotate(-30deg)', opacity: '0' },
+          '100%': { transform: 'scale(1) rotate(0deg)', opacity: '1' },
+        },
+      },
+      boxShadow: {
+        'card': '0 4px 24px -4px rgba(245, 158, 11, 0.15), 0 2px 8px -2px rgba(0,0,0,0.08)',
+        'card-hover': '0 8px 32px -4px rgba(245, 158, 11, 0.25), 0 4px 12px -2px rgba(0,0,0,0.12)',
+        'btn': '0 4px 12px rgba(245, 158, 11, 0.4)',
+        'btn-teal': '0 4px 12px rgba(13, 148, 136, 0.4)',
+        'btn-terra': '0 4px 12px rgba(234, 88, 12, 0.4)',
+        'inner-soft': 'inset 0 2px 8px rgba(0,0,0,0.06)',
+      },
+    },
+  },
+  plugins: [],
+}

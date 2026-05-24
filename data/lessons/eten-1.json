@@ -1,0 +1,163 @@
+{
+  "id": "eten-1",
+  "moduleId": "eten",
+  "title": "Eten & Drinken",
+  "titleAr": "الأكل والشرب",
+  "emoji": "🍽️",
+  "description": "Leer woorden voor eten en drinken!",
+  "xpReward": 75,
+  "vocabulary": [
+    {
+      "id": "v1",
+      "dutch": "Brood",
+      "arabic": "خبز",
+      "darija": "خبز",
+      "transliteration": "Khubz",
+      "darijaTransliteration": "Khubz",
+      "emoji": "🍞"
+    },
+    {
+      "id": "v2",
+      "dutch": "Water",
+      "arabic": "ماء",
+      "darija": "لما",
+      "transliteration": "Ma'",
+      "darijaTransliteration": "L'ma",
+      "emoji": "💧"
+    },
+    {
+      "id": "v3",
+      "dutch": "Muntthee",
+      "arabic": "شاي بالنعناع",
+      "darija": "أتاي",
+      "transliteration": "Shay bil-na'na'",
+      "darijaTransliteration": "Atay",
+      "emoji": "🫖"
+    },
+    {
+      "id": "v4",
+      "dutch": "Lekker!",
+      "arabic": "لذيذ!",
+      "darija": "بنين!",
+      "transliteration": "Ladhidh!",
+      "darijaTransliteration": "Bnin!",
+      "emoji": "😋"
+    },
+    {
+      "id": "v5",
+      "dutch": "Ik heb honger",
+      "arabic": "أنا جائع",
+      "darija": "جعان أنا",
+      "transliteration": "Ana ja'i",
+      "darijaTransliteration": "Ji3an ana",
+      "emoji": "🤤"
+    }
+  ],
+  "listeningExercises": [
+    {
+      "id": "l1",
+      "type": "multiple-choice",
+      "questionDutch": "Wat betekent dit?",
+      "audioWord": "Khubz",
+      "audioArabic": "خبز",
+      "audioDarija": "خبز",
+      "options": [
+        { "text": "Brood", "arabic": "خبز", "isCorrect": true },
+        { "text": "Water", "arabic": "ماء", "isCorrect": false },
+        { "text": "Thee", "arabic": "شاي", "isCorrect": false },
+        { "text": "Lekker", "arabic": "لذيذ", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "l2",
+      "type": "multiple-choice",
+      "questionDutch": "Wat betekent 'Bnin'?",
+      "audioWord": "Bnin",
+      "audioArabic": "لذيذ",
+      "audioDarija": "بنين",
+      "options": [
+        { "text": "Honger", "arabic": "جائع", "isCorrect": false },
+        { "text": "Water", "arabic": "ماء", "isCorrect": false },
+        { "text": "Lekker", "arabic": "لذيذ", "isCorrect": true },
+        { "text": "Brood", "arabic": "خبز", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "l3",
+      "type": "multiple-choice",
+      "questionDutch": "Hoe zeg je 'Muntthee' in Darija?",
+      "audioWord": "Atay",
+      "audioArabic": "شاي بالنعناع",
+      "audioDarija": "أتاي",
+      "options": [
+        { "text": "L'ma", "arabic": "لما", "isCorrect": false },
+        { "text": "Atay", "arabic": "أتاي", "isCorrect": true },
+        { "text": "Khubz", "arabic": "خبز", "isCorrect": false },
+        { "text": "Bnin", "arabic": "بنين", "isCorrect": false }
+      ]
+    }
+  ],
+  "speakingExercises": [
+    {
+      "id": "s1",
+      "dutch": "Lekker!",
+      "arabic": "لذيذ!",
+      "darija": "بنين!",
+      "transliteration": "Ladhidh!",
+      "darijaTransliteration": "Bnin!",
+      "prompt": "Zeg 'lekker' in het Arabisch!"
+    },
+    {
+      "id": "s2",
+      "dutch": "Ik wil brood",
+      "arabic": "أريد خبزاً",
+      "darija": "بغيت خبز",
+      "transliteration": "Ureedu khubzan",
+      "darijaTransliteration": "Bghit khubz",
+      "prompt": "Vraag om brood!"
+    },
+    {
+      "id": "s3",
+      "dutch": "Dank je, lekker!",
+      "arabic": "شكراً، لذيذ!",
+      "darija": "شكراً، بنين!",
+      "transliteration": "Shukran, ladhidh!",
+      "darijaTransliteration": "Shukran, bnin!",
+      "prompt": "Zeg dank je en dat het lekker is!"
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "adult",
+      "speakerName": "Oma",
+      "dutch": "Wil je thee?",
+      "arabic": "هل تريد شاياً؟",
+      "darija": "بغيتي أتاي؟",
+      "transliteration": "Bghiti atay?"
+    },
+    {
+      "speaker": "child",
+      "speakerName": "Jij",
+      "dutch": "Ja graag, dank je!",
+      "arabic": "نعم من فضلك، شكراً!",
+      "darija": "إييه، شكراً!",
+      "transliteration": "Iyeh, shukran!"
+    },
+    {
+      "speaker": "adult",
+      "speakerName": "Oma",
+      "dutch": "Is het lekker?",
+      "arabic": "هل هو لذيذ؟",
+      "darija": "بنين؟",
+      "transliteration": "Bnin?"
+    },
+    {
+      "speaker": "child",
+      "speakerName": "Jij",
+      "dutch": "Ja, heel lekker!",
+      "arabic": "نعم، لذيذ جداً!",
+      "darija": "إييه، بنين بزاف!",
+      "transliteration": "Iyeh, bnin bzaf!"
+    }
+  ]
+}

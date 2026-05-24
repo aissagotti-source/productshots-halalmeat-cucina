@@ -1,0 +1,163 @@
+{
+  "id": "familie-1",
+  "moduleId": "familie",
+  "title": "Familie",
+  "titleAr": "العائلة",
+  "emoji": "👨‍👩‍👧‍👦",
+  "description": "Leer de namen van je familieleden in Arabisch!",
+  "xpReward": 75,
+  "vocabulary": [
+    {
+      "id": "v1",
+      "dutch": "Vader",
+      "arabic": "أبي",
+      "darija": "بابا",
+      "transliteration": "Abi",
+      "darijaTransliteration": "Baba",
+      "emoji": "👨"
+    },
+    {
+      "id": "v2",
+      "dutch": "Moeder",
+      "arabic": "أمي",
+      "darija": "ماما",
+      "transliteration": "Umi",
+      "darijaTransliteration": "Mama",
+      "emoji": "👩"
+    },
+    {
+      "id": "v3",
+      "dutch": "Broer",
+      "arabic": "أخي",
+      "darija": "خويا",
+      "transliteration": "Akhi",
+      "darijaTransliteration": "Khoya",
+      "emoji": "👦"
+    },
+    {
+      "id": "v4",
+      "dutch": "Zus",
+      "arabic": "أختي",
+      "darija": "أختي",
+      "transliteration": "Ukhti",
+      "darijaTransliteration": "Khti",
+      "emoji": "👧"
+    },
+    {
+      "id": "v5",
+      "dutch": "Opa",
+      "arabic": "جدي",
+      "darija": "جدي",
+      "transliteration": "Jaddi",
+      "darijaTransliteration": "Jeddi",
+      "emoji": "👴"
+    }
+  ],
+  "listeningExercises": [
+    {
+      "id": "l1",
+      "type": "multiple-choice",
+      "questionDutch": "Wat betekent dit?",
+      "audioWord": "Baba",
+      "audioArabic": "أبي",
+      "audioDarija": "بابا",
+      "options": [
+        { "text": "Vader", "arabic": "أبي", "isCorrect": true },
+        { "text": "Moeder", "arabic": "أمي", "isCorrect": false },
+        { "text": "Broer", "arabic": "أخي", "isCorrect": false },
+        { "text": "Zus", "arabic": "أختي", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "l2",
+      "type": "multiple-choice",
+      "questionDutch": "Wat betekent 'Ukhti'?",
+      "audioWord": "Ukhti",
+      "audioArabic": "أختي",
+      "audioDarija": "أختي",
+      "options": [
+        { "text": "Broer", "arabic": "أخي", "isCorrect": false },
+        { "text": "Zus", "arabic": "أختي", "isCorrect": true },
+        { "text": "Opa", "arabic": "جدي", "isCorrect": false },
+        { "text": "Vader", "arabic": "أبي", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "l3",
+      "type": "multiple-choice",
+      "questionDutch": "Hoe zeg je 'Opa' in Darija?",
+      "audioWord": "Jeddi",
+      "audioArabic": "جدي",
+      "audioDarija": "جدي",
+      "options": [
+        { "text": "Baba", "arabic": "بابا", "isCorrect": false },
+        { "text": "Mama", "arabic": "ماما", "isCorrect": false },
+        { "text": "Jeddi", "arabic": "جدي", "isCorrect": true },
+        { "text": "Khoya", "arabic": "خويا", "isCorrect": false }
+      ]
+    }
+  ],
+  "speakingExercises": [
+    {
+      "id": "s1",
+      "dutch": "Vader",
+      "arabic": "أبي",
+      "darija": "بابا",
+      "transliteration": "Abi",
+      "darijaTransliteration": "Baba",
+      "prompt": "Zeg 'vader' in het Arabisch!"
+    },
+    {
+      "id": "s2",
+      "dutch": "Moeder",
+      "arabic": "أمي",
+      "darija": "ماما",
+      "transliteration": "Umi",
+      "darijaTransliteration": "Mama",
+      "prompt": "Zeg 'moeder' in het Arabisch!"
+    },
+    {
+      "id": "s3",
+      "dutch": "Mijn naam is...",
+      "arabic": "اسمي...",
+      "darija": "اسمي...",
+      "transliteration": "Ismi...",
+      "darijaTransliteration": "Ismi...",
+      "prompt": "Zeg hoe je heet in het Arabisch!"
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "adult",
+      "speakerName": "Tante Fatima",
+      "dutch": "Wie is dit?",
+      "arabic": "مَن هذا؟",
+      "darija": "شكون هادا؟",
+      "transliteration": "Shkun hada?"
+    },
+    {
+      "speaker": "child",
+      "speakerName": "Jij",
+      "dutch": "Dit is mijn vader.",
+      "arabic": "هذا أبي.",
+      "darija": "هادا بابا.",
+      "transliteration": "Hada baba."
+    },
+    {
+      "speaker": "adult",
+      "speakerName": "Tante Fatima",
+      "dutch": "En wie is dat?",
+      "arabic": "ومَن تلك؟",
+      "darija": "وشكون هادي؟",
+      "transliteration": "W shkun hadi?"
+    },
+    {
+      "speaker": "child",
+      "speakerName": "Jij",
+      "dutch": "Dat is mijn moeder.",
+      "arabic": "تلك أمي.",
+      "darija": "هادي ماما.",
+      "transliteration": "Hadi mama."
+    }
+  ]
+}
