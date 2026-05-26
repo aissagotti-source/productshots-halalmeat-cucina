@@ -6,330 +6,448 @@
 <title>Arabisch Avontuur 🌙</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Cairo:wght@700;900&display=swap" rel="stylesheet">
 <style>
+:root{--gold:#F59E0B;--gold2:#D97706;--terra:#EA580C;--teal:#0D9488;--teal2:#0F766E;--bg:#FFFBF0;--card:#fff;--r:1.5rem;--r2:2rem;--shadow:0 4px 24px -4px rgba(245,158,11,.15),0 2px 8px -2px rgba(0,0,0,.07)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;font-family:Nunito,sans-serif}
-body{background:#FFFBF0;color:#1c1917;max-width:430px;margin:0 auto;min-height:100vh}
-.ar{font-family:Cairo,Arial,sans-serif;direction:rtl}
-.sc{display:none;flex-direction:column;min-height:100vh;animation:si .28s ease}
-.sc.on{display:flex}
-@keyframes si{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+body{background:var(--bg);color:#1c1917;max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+.ar{font-family:Cairo,Arial,sans-serif;direction:rtl;unicode-bidi:bidi-override}
+.screen{display:none;flex-direction:column;min-height:100vh;animation:si .3s ease}
+.screen.on{display:flex}
+@keyframes si{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
 @keyframes pop{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes fall{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:0}}
-@keyframes rp{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.45)}50%{box-shadow:0 0 0 14px rgba(239,68,68,0)}}
+@keyframes rec{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{box-shadow:0 0 0 14px rgba(239,68,68,0)}}
 .bob{animation:bob 2s ease-in-out infinite}
 .flt{animation:flt 3s ease-in-out infinite}
-.btn{cursor:pointer;border:none;font-family:Nunito,sans-serif;font-weight:900;transition:transform .12s;-webkit-appearance:none}
-.btn:active{transform:scale(.93)}
-.card{background:#fff;border-radius:1.5rem;border:1.5px solid #FEF3D0;box-shadow:0 4px 24px -4px rgba(245,158,11,.13),0 2px 8px -2px rgba(0,0,0,.07)}
-input{font-family:Nunito,sans-serif;font-size:1.3rem;font-weight:900;text-align:center;background:#FFFBF0;border:2px solid #FEF3D0;border-radius:1.2rem;padding:.9rem;color:#1c1917;outline:none;width:100%;transition:border-color .2s}
-input:focus{border-color:#F59E0B}
-.hdr{background:linear-gradient(135deg,#F59E0B,#EA580C);padding:3rem 1.1rem 1.2rem;position:relative;overflow:hidden}
-.hdr h1{color:#fff;font-size:1.6rem;font-weight:900}
-.hdr p{color:rgba(255,255,255,.78);font-size:.8rem;font-weight:700;margin-top:.2rem}
-.topbar{background:#fff;border-bottom:1.5px solid #FEF3D0;padding:2.8rem 1rem .7rem;display:flex;align-items:center;gap:.7rem}
-.xb{width:1.9rem;height:1.9rem;border-radius:.55rem;background:#f5f5f4;border:none;cursor:pointer;font-size:.9rem;flex-shrink:0}
-.pb{flex:1;height:.65rem;background:#FEF3D0;border-radius:999px;overflow:hidden}
-.pf{height:100%;background:#F59E0B;border-radius:999px;transition:width .55s ease}
+.card{background:var(--card);border-radius:var(--r2);border:1.5px solid #FEF3D0;box-shadow:var(--shadow)}
+.btn{cursor:pointer;border:none;font-family:Nunito,sans-serif;font-weight:900;transition:transform .12s ease,opacity .12s;-webkit-appearance:none}
+.btn:active{transform:scale(.94)}
+.pill{border-radius:999px;padding:.3rem .9rem;font-size:.75rem;font-weight:800}
+.hdr{padding:3.2rem 1.2rem 1.4rem;position:relative;overflow:hidden}
+.hdr h1{color:#fff;font-size:1.5rem;font-weight:900}
+.hdr p{color:rgba(255,255,255,.75);font-size:.8rem;font-weight:700}
+.grad{background:linear-gradient(135deg,var(--gold),var(--terra))}
+.grad2{background:linear-gradient(135deg,#3b3b3b,#1c1c1c)}
+.xpbar{height:.7rem;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;margin-top:.5rem}
+.xpfill{height:100%;background:#FCD34D;border-radius:999px;transition:width .8s ease}
+.stat3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-top:.8rem}
+.statbox{background:rgba(255,255,255,.18);border-radius:var(--r);padding:.7rem .5rem;text-align:center;color:#fff}
+.statbox .v{font-size:1.15rem;font-weight:900}
+.statbox .l{font-size:.68rem;font-weight:700;opacity:.8}
+.cta{margin:1rem;border-radius:var(--r2);padding:1.2rem 1.1rem;color:#fff;position:relative;overflow:hidden;text-align:left;box-shadow:0 4px 14px rgba(245,158,11,.4)}
+.cta .bg-em{position:absolute;right:.8rem;top:50%;transform:translateY(-50%);font-size:4rem;opacity:.2}
+.cta .sub{font-size:.75rem;font-weight:700;opacity:.8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem}
+.cta h2{font-size:1.5rem;font-weight:900;margin-bottom:.2rem}
+.cta p{font-size:.82rem;opacity:.85;font-weight:700}
+.cta .xpbadge{display:inline-flex;align-items:center;gap:.25rem;background:rgba(255,255,255,.22);border-radius:999px;padding:.3rem .8rem;font-size:.8rem;font-weight:900;margin-top:.6rem}
+.missions{margin:0 1rem;padding:1rem}
+.mission-row{display:flex;align-items:center;gap:.7rem;padding:.65rem .8rem;border-radius:var(--r);margin-bottom:.4rem;font-size:.85rem;font-weight:700}
+.mission-row.done{background:#f0fdf4;color:#166534}
+.mission-row.todo{background:#f8f8f6;color:#44403c}
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:0 1rem}
+.mod-card{padding:.8rem .5rem;border-radius:var(--r);border:1.5px solid #FEF3D0;background:#fff;text-align:center;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s}
+.mod-card:active{transform:scale(.93)}
+.mod-card .ico{font-size:2rem;margin-bottom:.3rem}
+.mod-card .name{font-size:.72rem;font-weight:900;color:#1c1917;line-height:1.2}
+.mod-card.locked{opacity:.5;cursor:default}
+.mod-card .lock-lbl{font-size:.6rem;color:#a8a29e;font-weight:700;margin-top:.2rem}
+.sec-title{font-size:1.05rem;font-weight:900;color:#1c1917;margin:.9rem 1rem .4rem}
+.row2{display:flex;gap:.7rem;margin:0 1rem}
+.topbar{background:#fff;border-bottom:1.5px solid #FEF3D0;padding:3rem 1rem .7rem;display:flex;align-items:center;gap:.8rem}
+.topbar .x-btn{width:2rem;height:2rem;border-radius:.6rem;background:#f5f5f4;border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.topbar .pbar{flex:1;height:.7rem;background:#FEF3D0;border-radius:999px;overflow:hidden}
+.topbar .pfill{height:100%;background:var(--gold);border-radius:999px;transition:width .6s ease}
+.topbar .pcnt{font-size:.7rem;font-weight:800;color:#a8a29e;flex-shrink:0}
+.step-lbl{display:flex;align-items:center;gap:.5rem;padding:.6rem 1rem .3rem;font-size:.95rem;font-weight:900;color:#1c1917}
+.vcrd{margin:0 1rem;padding:1.4rem}
+.vcrd .emoji{font-size:5.5rem;text-align:center;display:block;margin-bottom:.8rem}
+.vcrd .lang-lbl{font-size:.65rem;font-weight:800;color:#a8a29e;text-transform:uppercase;letter-spacing:.08em;text-align:center;margin-bottom:.2rem}
+.vcrd .main-word{font-size:2rem;font-weight:900;text-align:center;color:#1c1917}
+.vcrd .divider{height:1px;background:linear-gradient(90deg,transparent,#FEF3D0,transparent);margin:.8rem 0}
+.vcrd .arabic-word{font-size:2.5rem;font-weight:900;text-align:center;color:var(--gold2)}
+.vcrd .translit{font-size:.82rem;font-weight:700;text-align:center;color:#a8a29e;font-style:italic;margin-top:.15rem}
+.darija-box{background:#f0fdfa;border-radius:var(--r);padding:.8rem;text-align:center;margin-top:.5rem}
+.darija-box .dlbl{font-size:.65rem;font-weight:800;color:var(--teal2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem}
+.darija-box .dword{font-size:1.6rem;font-weight:900;color:var(--teal)}
+.darija-box .dtrans{font-size:.72rem;color:var(--teal2);font-style:italic;font-weight:700}
+.btn-row{display:flex;gap:.7rem;margin:.8rem 1rem 0}
+.btn-teal{background:var(--teal);color:#fff;border-radius:var(--r);padding:1rem;flex:1;font-size:.95rem;box-shadow:0 4px 12px rgba(13,148,136,.35)}
+.btn-gold{background:var(--gold);color:#fff;border-radius:var(--r);padding:1rem;flex:1;font-size:.95rem;box-shadow:0 4px 12px rgba(245,158,11,.4)}
+.btn-full{width:calc(100% - 2rem);margin:0 1rem;border-radius:var(--r2);padding:1.2rem;color:#fff;font-size:1.15rem;background:var(--gold);box-shadow:0 4px 14px rgba(245,158,11,.4)}
+.btn-teal-full{background:var(--teal);box-shadow:0 4px 14px rgba(13,148,136,.35)}
+.audio-btn{background:var(--teal);color:#fff;border-radius:var(--r2);padding:1.4rem 1rem;text-align:center;cursor:pointer;box-shadow:0 4px 14px rgba(13,148,136,.35);transition:transform .12s}
+.audio-btn:active{transform:scale(.95)}
+.audio-btn .big-icon{font-size:2.5rem;display:block;margin-bottom:.4rem}
+.audio-btn .big-word{font-size:1.5rem;font-weight:900}
+.audio-btn .small-word{font-size:.8rem;opacity:.8;font-style:italic;font-weight:700}
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:0 1rem}
+.opt-btn{padding:.9rem .5rem;border-radius:var(--r);border:2px solid #FEF3D0;background:#fff;cursor:pointer;text-align:center;transition:all .15s;font-weight:900;font-size:.85rem;color:#1c1917}
+.opt-btn:active{transform:scale(.95)}
+.opt-btn.correct{background:#f0fdf4;border-color:#4ade80;color:#166534}
+.opt-btn.wrong{background:#fef2f2;border-color:#f87171;color:#991b1b}
+.opt-btn.dim{opacity:.4}
+.opt-btn .ar-small{font-size:1rem;color:#a8a29e;display:block;margin-top:.2rem}
+.fb-box{margin:0 1rem;border-radius:var(--r);padding:.9rem;text-align:center;font-weight:900;font-size:1rem}
+.fb-ok{background:#f0fdf4;color:#15803d}
+.fb-wr{background:#fffbeb;color:#92400e}
+.speak-card{margin:0 1rem;padding:1.2rem;background:linear-gradient(135deg,#FFFBF0,#FEF9C3);border-radius:var(--r2);border:1.5px solid #FEF3D0;text-align:center}
+.speak-card .s-dutch{font-size:1.8rem;font-weight:900;color:#1c1917;margin-bottom:.3rem}
+.speak-card .s-arabic{font-size:2.5rem;font-weight:900;color:var(--gold2);line-height:1.4}
+.speak-card .s-trans{font-size:.8rem;color:#a8a29e;font-style:italic;font-weight:700;margin-top:.1rem}
+.darija-chip{display:inline-block;background:#ccfbf1;color:var(--teal2);border-radius:999px;padding:.3rem .9rem;font-size:.8rem;font-weight:800;margin-top:.5rem}
+.mic-wrap{display:flex;flex-direction:column;align-items:center;gap:.7rem;margin:.5rem 0}
+.mic-btn{width:6rem;height:6rem;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;font-size:.72rem;font-weight:800;color:#fff;cursor:pointer;transition:transform .12s;box-shadow:0 4px 16px rgba(239,68,68,.4)}
+.mic-btn:active{transform:scale(.92)}
+.mic-btn.idle{background:#ef4444}
+.mic-btn.rec{background:#ef4444;animation:rec 1.5s ease-in-out infinite}
+.mic-btn.done{background:var(--gold)}
+.mic-status{font-size:.82rem;font-weight:700;color:#a8a29e;text-align:center}
+.stars-row{display:flex;justify-content:center;gap:.4rem;margin-bottom:.6rem}
+.fb-stars{background:linear-gradient(135deg,#fffbeb,#fef9c3);border:1.5px solid #FEF3D0;border-radius:var(--r2);padding:1rem;margin:0 1rem;text-align:center}
+.fb-stars .fbt{font-size:1.05rem;font-weight:900;color:#1c1917}
+.fb-stars .fbs{font-size:.8rem;color:#a8a29e;margin-top:.2rem;font-weight:700}
+.hidden{display:none!important}
+.dial-line{border-radius:var(--r);padding:.9rem;margin-bottom:.6rem;animation:si .3s ease}
+.dial-adult{background:#f0fdfa;border:1.5px solid #99f6e4}
+.dial-child{background:#fffbeb;border:1.5px solid #FEF3D0}
+.dial-name{font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem}
+.dial-adult .dial-name{color:var(--teal2)}
+.dial-child .dial-name{color:var(--gold2)}
+.dial-arabic{font-size:1.3rem;font-weight:900;color:#1c1917}
+.dial-trans{font-size:.72rem;font-style:italic;color:#a8a29e;font-weight:700;margin-top:.1rem}
+.dial-dutch{font-size:.82rem;font-weight:700;color:#44403c;margin-top:.3rem}
+.dial-you{background:#fde68a;color:#92400e;border-radius:999px;padding:.1rem .5rem;font-size:.65rem;font-weight:900;margin-left:.4rem}
+.reward-screen{position:fixed;inset:0;background:linear-gradient(160deg,var(--gold),var(--terra));display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;padding:1.5rem;text-align:center;color:#fff}
+.reward-screen h1{font-size:2.4rem;font-weight:900;margin-bottom:.3rem}
+.reward-screen .sub{font-size:1.05rem;opacity:.85;font-weight:700;margin-bottom:1.2rem}
+.r-stars{display:flex;justify-content:center;gap:.7rem;margin-bottom:1.2rem}
+.r-stars span{font-size:3rem;animation:pop .4s cubic-bezier(.175,.885,.32,1.275) backwards}
+.stats2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;width:100%;max-width:340px;margin-bottom:1rem}
+.stats2 .s{background:rgba(255,255,255,.2);border-radius:var(--r);padding:1rem;text-align:center}
+.stats2 .sv{font-size:1.4rem;font-weight:900}
+.stats2 .sl{font-size:.78rem;opacity:.8;font-weight:700}
+.enc-box{background:rgba(255,255,255,.18);border-radius:var(--r);padding:.9rem;width:100%;max-width:340px;margin-bottom:1.2rem;font-size:.9rem;font-weight:700}
+.btn-home{background:#fff;color:var(--gold2);border-radius:var(--r2);padding:1.1rem 2rem;font-size:1.1rem;font-weight:900;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.12);transition:transform .12s;width:100%;max-width:340px}
+.btn-home:active{transform:scale(.95)}
+.confetti{position:absolute;border-radius:2px;pointer-events:none}
+.map-row{display:flex;align-items:center;padding:.7rem 1rem}
+.map-city{display:flex;flex-direction:column;align-items:center;gap:.25rem}
+.city-dot{width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;border:2px solid rgba(0,0,0,.1)}
+.city-dot.active{background:var(--gold);border-color:var(--gold2);box-shadow:0 0 0 4px rgba(245,158,11,.25)}
+.city-dot.locked{background:#e7e5e4;opacity:.5}
+.city-name{font-size:.65rem;font-weight:800;color:#78716c}
+.city-name.active{color:var(--gold2)}
+.map-line{flex:1;height:2px;border-top:2px dashed #FCD34D;margin:0 .3rem;position:relative;top:-.6rem}
+.map-line.locked{border-color:#e7e5e4}
+.modules-list{padding:0 1rem;flex:1;overflow-y:auto}
+.mod-row{display:flex;align-items:center;gap:.9rem;padding:1rem;background:#fff;border-radius:var(--r2);border:1.5px solid #FEF3D0;box-shadow:var(--shadow);margin-bottom:.7rem;cursor:pointer;transition:transform .12s}
+.mod-row:active{transform:scale(.97)}
+.mod-row.locked{opacity:.55;cursor:default}
+.mod-row .m-ico{width:3.5rem;height:3.5rem;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0}
+.mod-row .m-title{font-size:.95rem;font-weight:900;color:#1c1917}
+.mod-row .m-desc{font-size:.75rem;font-weight:700;color:#a8a29e}
+.mod-row .m-lock{font-size:.72rem;font-weight:800;color:#a8a29e;margin-top:.2rem}
+.parent-stats{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:0 1rem 1rem}
+.pstat{border-radius:var(--r);padding:.9rem;display:flex;flex-direction:column;gap:.35rem}
+.pstat .pi{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;opacity:.7}
+.pstat .pv{font-size:1.6rem;font-weight:900;color:#1c1917}
+.pstat .pu{font-size:.75rem;color:#a8a29e;font-weight:700}
+.tip-box{margin:0 1rem 1rem;background:linear-gradient(135deg,#FFFBF0,#FEF9C3);border:1.5px solid #FEF3D0;border-radius:var(--r2);padding:1.1rem}
+.tip-box h3{font-size:.95rem;font-weight:900;margin-bottom:.3rem}
+.tip-inner{background:#fff;border-radius:var(--r);padding:.8rem;border:1.5px solid #FEF3D0;margin-top:.6rem;text-align:center}
+.tip-q{font-size:.85rem;font-weight:800;color:#44403c;margin-bottom:.5rem;font-style:italic}
+input{font-family:Nunito,sans-serif;font-size:1.3rem;font-weight:900;text-align:center;background:#FFFBF0;border:2px solid #FEF3D0;border-radius:var(--r);padding:.9rem 1rem;color:#1c1917;outline:none;transition:border-color .2s}
+input:focus{border-color:var(--gold)}
+.ob-card{background:#fff;border-radius:2rem;box-shadow:0 8px 40px rgba(0,0,0,.12);flex:1;margin:.5rem .9rem 1.1rem;overflow-y:auto;padding:1.4rem}
+.ob-hdr{background:linear-gradient(135deg,var(--gold),var(--terra));padding:3rem 1.2rem 1rem;text-align:center}
+.ob-hdr h1{color:#fff;font-size:1.8rem;font-weight:900}
+.ob-hdr p{color:rgba(255,255,255,.8);font-size:.85rem;font-weight:700;margin-top:.3rem}
+.dots{display:flex;justify-content:center;gap:.5rem;padding:.8rem 0}
+.dot{width:.6rem;height:.6rem;border-radius:50%;background:rgba(255,255,255,.35);transition:transform .2s,background .2s}
+.dot.on{background:#fff;transform:scale(1.3)}
+.av-grid{display:flex;flex-direction:column;gap:.8rem;align-items:center;margin:1rem 0}
+.av-row{display:flex;gap:.7rem;justify-content:center}
+.av-btn{width:3.3rem;height:3.3rem;border-radius:.9rem;border:2.5px solid #FEF3D0;background:#FFFBF0;font-size:1.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.av-btn:active{transform:scale(.88)}
+.av-btn.sel{background:var(--gold);border-color:var(--gold2);box-shadow:0 4px 12px rgba(245,158,11,.4);transform:scale(1.1)}
+.goal-opt{display:flex;align-items:center;gap:.8rem;padding:.9rem;border:2px solid #e7e5e4;border-radius:var(--r);background:#fff;margin-bottom:.5rem;cursor:pointer;transition:all .15s;text-align:left}
+.goal-opt:active{transform:scale(.97)}
+.goal-opt.sel{border-color:var(--gold);background:#FFFBF0}
+.goal-opt .g-ico{font-size:1.8rem}
+.goal-opt .g-title{font-size:.88rem;font-weight:900;color:#1c1917}
+.goal-opt .g-sub{font-size:.72rem;font-weight:700;color:#a8a29e}
+.feat-list{background:#FFFBF0;border-radius:var(--r);padding:.9rem;margin:1rem 0;display:flex;flex-direction:column;gap:.7rem}
+.feat-item{display:flex;align-items:center;gap:.7rem;font-size:.85rem;font-weight:700;color:#44403c}
+.btn-pair{display:flex;gap:.7rem;margin-top:1rem}
+.btn-back{flex:1;background:#f5f5f4;color:#78716c;border-radius:var(--r);padding:.9rem;font-size:.9rem}
+.btn-fwd{flex:2;background:var(--gold);color:#fff;border-radius:var(--r);padding:.9rem;font-size:.9rem;box-shadow:0 4px 12px rgba(245,158,11,.4)}
+.btn-fwd:disabled{opacity:.4}
+.scroll{flex:1;overflow-y:auto}
 </style>
 </head>
 <body>
 
-<div id="s-sp" class="sc on" style="background:linear-gradient(160deg,#F59E0B,#EA580C);align-items:center;justify-content:center">
-  <div style="text-align:center"><div class="bob" style="font-size:4.5rem;margin-bottom:.9rem">🌙</div>
-  <h1 style="color:#fff;font-size:2rem;font-weight:900">Arabisch Avontuur</h1>
-  <p style="color:rgba(255,255,255,.8);font-weight:700;margin-top:.4rem">Laden...</p>
-  <div style="display:flex;justify-content:center;gap:.45rem;margin-top:1.1rem">
-    <div style="width:.55rem;height:.55rem;background:rgba(255,255,255,.7);border-radius:50%;animation:bob 1s ease-in-out infinite 0s both"></div>
-    <div style="width:.55rem;height:.55rem;background:rgba(255,255,255,.7);border-radius:50%;animation:bob 1s ease-in-out infinite .15s both"></div>
-    <div style="width:.55rem;height:.55rem;background:rgba(255,255,255,.7);border-radius:50%;animation:bob 1s ease-in-out infinite .3s both"></div>
-  </div></div>
-</div>
-
-<div id="s-ob" class="sc">
-  <div class="hdr" style="text-align:center;padding-bottom:1.5rem">
-    <div style="font-size:2.8rem;margin-bottom:.5rem" class="bob">🌙</div>
-    <h1>Arabisch Avontuur</h1><p>Jouw avontuur begint hier!</p>
-  </div>
-  <div style="display:flex;justify-content:center;gap:.5rem;padding:.8rem 0">
-    <div id="d0" style="width:.6rem;height:.6rem;border-radius:50%;background:#F59E0B;transform:scale(1.3)"></div>
-    <div style="width:.6rem;height:.6rem;border-radius:50%;background:rgba(245,158,11,.3)"></div>
-    <div style="width:.6rem;height:.6rem;border-radius:50%;background:rgba(245,158,11,.3)"></div>
-  </div>
-  <div class="card" style="flex:1;margin:.4rem .9rem 1rem;padding:1.4rem;display:flex;flex-direction:column;gap:1rem">
-    <div style="text-align:center"><div style="font-size:3.5rem">👋</div>
-    <h2 style="font-size:1.5rem;font-weight:900;margin:.4rem 0 .2rem">Hoe heet jij?</h2>
-    <p style="font-size:.82rem;color:#a8a29e;font-weight:700">Voer je naam in om te beginnen</p></div>
-    <input id="n-in" type="text" placeholder="Jouw naam..." maxlength="18">
-    <button class="btn" onclick="goAv()" style="background:#F59E0B;color:#fff;border-radius:1.5rem;padding:1.1rem;font-size:1.1rem;box-shadow:0 4px 14px rgba(245,158,11,.4)">Doorgaan →</button>
-  </div>
-</div>
-
-<div id="s-av" class="sc">
-  <div class="hdr" style="text-align:center;padding-bottom:1.3rem">
-    <div id="avp" style="font-size:3rem;margin-bottom:.4rem">🦁</div>
-    <h1>Kies je avatar</h1><p>Welk dier past bij jou?</p>
-  </div>
-  <div style="display:flex;justify-content:center;gap:.5rem;padding:.7rem 0">
-    <div style="width:.6rem;height:.6rem;border-radius:50%;background:rgba(245,158,11,.3)"></div>
-    <div style="width:.6rem;height:.6rem;border-radius:50%;background:#F59E0B;transform:scale(1.3)"></div>
-    <div style="width:.6rem;height:.6rem;border-radius:50%;background:rgba(245,158,11,.3)"></div>
-  </div>
-  <div class="card" style="flex:1;margin:.4rem .9rem 1rem;padding:1.3rem;overflow-y:auto">
-    <div id="avg" style="display:flex;flex-direction:column;gap:.75rem;align-items:center;margin:.5rem 0 1.2rem"></div>
-    <div style="display:flex;gap:.7rem">
-      <button class="btn" onclick="go('ob')" style="flex:1;background:#f5f5f4;color:#78716c;border-radius:1.1rem;padding:.85rem">← Terug</button>
-      <button class="btn" onclick="goGoal()" style="flex:2;background:#F59E0B;color:#fff;border-radius:1.1rem;padding:.85rem;box-shadow:0 4px 12px rgba(245,158,11,.38)">Doorgaan →</button>
+<!-- SPLASH -->
+<div id="s-splash" class="screen on" style="background:linear-gradient(160deg,var(--gold),var(--terra));align-items:center;justify-content:center;min-height:100vh">
+  <div style="text-align:center">
+    <div class="bob" style="font-size:4.5rem;margin-bottom:1rem">🌙</div>
+    <h1 style="color:#fff;font-size:2rem;font-weight:900">Arabisch Avontuur</h1>
+    <p style="color:rgba(255,255,255,.8);font-weight:700;margin-top:.4rem">Laden...</p>
+    <div style="display:flex;justify-content:center;gap:.4rem;margin-top:1.2rem">
+      <div style="width:.55rem;height:.55rem;background:rgba(255,255,255,.7);border-radius:50%;animation:bob 1s ease-in-out infinite 0s both"></div>
+      <div style="width:.55rem;height:.55rem;background:rgba(255,255,255,.7);border-radius:50%;animation:bob 1s ease-in-out infinite .15s both"></div>
+      <div style="width:.55rem;height:.55rem;background:rgba(255,255,255,.7);border-radius:50%;animation:bob 1s ease-in-out infinite .3s both"></div>
     </div>
   </div>
 </div>
 
-<div id="s-goal" class="sc">
-  <div class="hdr" style="text-align:center;padding-bottom:1.3rem">
-    <div style="font-size:2.8rem;margin-bottom:.4rem">🎯</div>
-    <h1>Wat is jouw doel?</h1><p>Kies wat het beste bij jou past</p>
-  </div>
-  <div style="display:flex;justify-content:center;gap:.5rem;padding:.7rem 0">
-    <div style="width:.6rem;height:.6rem;border-radius:50%;background:rgba(245,158,11,.3)"></div>
-    <div style="width:.6rem;height:.6rem;border-radius:50%;background:rgba(245,158,11,.3)"></div>
-    <div style="width:.6rem;height:.6rem;border-radius:50%;background:#F59E0B;transform:scale(1.3)"></div>
-  </div>
-  <div class="card" style="flex:1;margin:.4rem .9rem 1rem;padding:1.2rem;overflow-y:auto;display:flex;flex-direction:column;gap:.5rem">
-    <div id="gl"></div>
-    <div style="display:flex;gap:.7rem;margin-top:.5rem">
-      <button class="btn" onclick="go('av')" style="flex:1;background:#f5f5f4;color:#78716c;border-radius:1.1rem;padding:.85rem">← Terug</button>
-      <button id="gn" class="btn" onclick="goReady()" disabled style="flex:2;background:#F59E0B;color:#fff;border-radius:1.1rem;padding:.85rem;box-shadow:0 4px 12px rgba(245,158,11,.38);opacity:.45">Doorgaan →</button>
-    </div>
+<!-- OB NAME -->
+<div id="s-ob-name" class="screen">
+  <div class="ob-hdr"><div class="bob" style="font-size:3rem;margin-bottom:.6rem">🌙</div><h1>Arabisch Avontuur</h1><p>Jouw avontuur begint hier!</p></div>
+  <div class="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="ob-card">
+    <div style="text-align:center;margin-bottom:1.2rem"><div style="font-size:3.5rem">👋</div><h2 style="font-size:1.5rem;font-weight:900;margin:.4rem 0 .2rem">Hoe heet jij?</h2><p style="font-size:.82rem;color:#a8a29e;font-weight:700">Voer je naam in om te beginnen</p></div>
+    <input id="name-in" type="text" placeholder="Jouw naam..." maxlength="20" style="width:100%;margin-bottom:1rem">
+    <button class="btn btn-full" onclick="goAv()" style="display:block;text-align:center">Doorgaan →</button>
   </div>
 </div>
 
-<div id="s-rd" class="sc">
-  <div class="hdr" style="text-align:center;padding-bottom:1.5rem">
-    <div style="font-size:2.5rem;margin-bottom:.3rem">🎉</div>
-    <h1 id="rt">Welkom!</h1>
-  </div>
-  <div class="card" style="flex:1;margin:.4rem .9rem 1rem;padding:1.4rem;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center">
-    <div id="rav" class="flt" style="font-size:5.5rem">🦁</div>
-    <p style="font-size:.85rem;color:#78716c;font-weight:700">Jouw Arabisch avontuur begint nu! Leer elke dag en word een ster. 🌟</p>
-    <div style="background:#FFFBF0;border-radius:1.2rem;padding:1rem;width:100%;text-align:left;display:flex;flex-direction:column;gap:.6rem">
-      <div style="display:flex;align-items:center;gap:.7rem"><span style="font-size:1.4rem">🔥</span><div><b style="font-size:.88rem;display:block">Dagelijkse reeks</b><span style="font-size:.75rem;color:#a8a29e">Oefen elke dag voor een bonus!</span></div></div>
-      <div style="display:flex;align-items:center;gap:.7rem"><span style="font-size:1.4rem">⭐</span><div><b style="font-size:.88rem;display:block">Verdien XP punten</b><span style="font-size:.75rem;color:#a8a29e">Stijg van level en ontgrendel steden!</span></div></div>
-      <div style="display:flex;align-items:center;gap:.7rem"><span style="font-size:1.4rem">🎙️</span><div><b style="font-size:.88rem;display:block">Oefen spreken</b><span style="font-size:.75rem;color:#a8a29e">Bouw zelfvertrouwen op!</span></div></div>
+<!-- OB AVATAR -->
+<div id="s-ob-av" class="screen">
+  <div class="ob-hdr"><div id="av-preview" style="font-size:3rem;margin-bottom:.3rem">🦁</div><h1>Kies je avatar</h1><p>Welk dier past bij jou?</p></div>
+  <div class="dots"><div class="dot"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="ob-card">
+    <div class="av-grid">
+      <div class="av-row" id="av-row1"></div>
+      <div class="av-row" id="av-row2"></div>
     </div>
-    <button class="btn" onclick="startApp()" style="width:100%;background:linear-gradient(135deg,#F59E0B,#EA580C);color:#fff;border-radius:1.8rem;padding:1.2rem;font-size:1.15rem;box-shadow:0 4px 16px rgba(245,158,11,.42)">🚀 Begin het avontuur!</button>
+    <div class="btn-pair"><button class="btn btn-back" onclick="go('ob-name')">← Terug</button><button class="btn btn-fwd" onclick="goGoal()">Doorgaan →</button></div>
   </div>
 </div>
 
-<div id="s-home" class="sc" style="overflow-y:auto">
-  <div class="hdr" style="padding-bottom:1rem">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative">
+<!-- OB GOAL -->
+<div id="s-ob-goal" class="screen">
+  <div class="ob-hdr"><div style="font-size:3rem;margin-bottom:.3rem">🎯</div><h1>Wat is jouw doel?</h1><p>Kies wat het beste bij jou past</p></div>
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot on"></div><div class="dot"></div></div>
+  <div class="ob-card scroll">
+    <div id="goal-list"></div>
+    <div class="btn-pair"><button class="btn btn-back" onclick="go('ob-av')">← Terug</button><button id="goal-nxt" class="btn btn-fwd" onclick="goReady()" disabled>Doorgaan →</button></div>
+  </div>
+</div>
+
+<!-- OB READY -->
+<div id="s-ob-ready" class="screen">
+  <div class="ob-hdr" style="padding-bottom:1.5rem"><div style="font-size:3rem">🎉</div><h1 id="ready-title">Welkom!</h1></div>
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot on"></div></div>
+  <div class="ob-card scroll">
+    <div id="ready-av" style="font-size:5rem;text-align:center;margin:1rem 0" class="flt">🦁</div>
+    <p style="text-align:center;font-size:.85rem;color:#78716c;font-weight:700;margin-bottom:1rem">Jouw Arabisch avontuur begint nu. Leer elke dag een beetje en word een ster!</p>
+    <div class="feat-list">
+      <div class="feat-item"><span style="font-size:1.5rem">🔥</span><div><b style="display:block">Dagelijkse reeks</b><span style="font-size:.75rem;color:#a8a29e">Oefen elke dag voor een bonus!</span></div></div>
+      <div class="feat-item"><span style="font-size:1.5rem">⭐</span><div><b style="display:block">Verdien XP punten</b><span style="font-size:.75rem;color:#a8a29e">Stijg van level en ontgrendel steden!</span></div></div>
+      <div class="feat-item"><span style="font-size:1.5rem">🎙️</span><div><b style="display:block">Oefen spreken</b><span style="font-size:.75rem;color:#a8a29e">Bouw zelfvertrouwen op!</span></div></div>
+    </div>
+    <button class="btn btn-full" onclick="startApp()" style="margin-top:1rem;display:block;text-align:center;background:linear-gradient(135deg,var(--gold),var(--terra))">🚀 Begin het avontuur!</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="s-home" class="screen scroll">
+  <div class="hdr grad">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
       <div><p style="color:rgba(255,255,255,.75);font-size:.8rem;font-weight:700">Goedemiddag,</p>
-      <div style="display:flex;align-items:center;gap:.45rem;margin-top:.2rem"><span id="hav" style="font-size:2rem">🦁</span><span id="hnm" style="color:#fff;font-size:1.5rem;font-weight:900">Ster!</span></div>
-      <span style="background:rgba(255,255,255,.2);color:#fff;font-size:.7rem;font-weight:800;padding:.2rem .7rem;border-radius:999px;display:inline-block;margin-top:.35rem">Level 1 · Beginner</span></div>
-      <button class="btn" onclick="go('par')" style="background:rgba(255,255,255,.2);border-radius:.7rem;width:2.2rem;height:2.2rem;color:#fff;font-size:.95rem">⚙️</button>
-    </div>
-    <div style="margin-top:.85rem">
-      <div style="display:flex;justify-content:space-between;margin-bottom:.3rem"><span style="color:#fff;font-size:.82rem;font-weight:900">⚡ <span id="hxp">0</span> XP</span><span style="color:rgba(255,255,255,.7);font-size:.7rem;font-weight:700">Level 2 → 500 XP</span></div>
-      <div style="height:.65rem;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden"><div id="hxpf" style="height:100%;background:#FCD34D;border-radius:999px;width:0%;transition:width .8s ease"></div></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.55rem;margin-top:.8rem">
-      <div style="background:rgba(255,255,255,.18);border-radius:1.1rem;padding:.65rem .4rem;text-align:center"><div style="color:#fff;font-size:1.1rem;font-weight:900">🔥 <span id="hstr">0</span></div><div style="color:rgba(255,255,255,.75);font-size:.66rem;font-weight:700">Dagreeks</div></div>
-      <div style="background:rgba(255,255,255,.18);border-radius:1.1rem;padding:.65rem .4rem;text-align:center"><div style="color:#fff;font-size:1.1rem;font-weight:900">📚 <span id="hwrd">0</span></div><div style="color:rgba(255,255,255,.75);font-size:.66rem;font-weight:700">Woorden</div></div>
-      <div style="background:rgba(255,255,255,.18);border-radius:1.1rem;padding:.65rem .4rem;text-align:center"><div style="color:#fff;font-size:1.1rem;font-weight:900">🏆 <span id="hles">0</span></div><div style="color:rgba(255,255,255,.75);font-size:.66rem;font-weight:700">Badges</div></div>
-    </div>
-  </div>
-
-  <button class="btn" onclick="startL()" style="display:block;margin:.9rem 1rem .4rem;background:linear-gradient(135deg,#F59E0B,#EA580C);border-radius:1.6rem;padding:1.2rem 1.1rem;color:#fff;text-align:left;position:relative;overflow:hidden;box-shadow:0 4px 14px rgba(245,158,11,.4)">
-    <div style="position:absolute;right:.8rem;top:50%;transform:translateY(-50%);font-size:4rem;opacity:.2">👋</div>
-    <div style="position:relative"><p style="font-size:.7rem;font-weight:800;opacity:.8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem">📅 Dagelijkse les</p>
-    <h2 style="font-size:1.5rem;font-weight:900;margin-bottom:.2rem">Begroeten</h2>
-    <p style="font-size:.82rem;opacity:.85;font-weight:700">Leer hoe je mensen begroet!</p>
-    <div style="display:inline-flex;align-items:center;gap:.25rem;background:rgba(255,255,255,.22);border-radius:999px;padding:.3rem .8rem;font-size:.78rem;font-weight:900;margin-top:.55rem">⚡ +75 XP verdienen</div></div>
-  </button>
-
-  <div class="card" style="margin:0 1rem;padding:1rem">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem"><div><b style="font-size:.92rem">🎯 Dagtaken</b><p id="hmc" style="font-size:.7rem;color:#a8a29e;font-weight:700">0/3 voltooid</p></div></div>
-    <div id="mr1" style="display:flex;align-items:center;gap:.65rem;padding:.6rem .75rem;border-radius:1rem;background:#f8f8f6;margin-bottom:.35rem"><span id="mi1">⭕</span><span style="flex:1;font-size:.83rem;font-weight:700;color:#44403c">Voltooi 1 les</span><span style="font-size:.7rem;font-weight:800;background:#FEF3D0;color:#D97706;border-radius:999px;padding:.15rem .55rem">+20 XP</span></div>
-    <div id="mr2" style="display:flex;align-items:center;gap:.65rem;padding:.6rem .75rem;border-radius:1rem;background:#f8f8f6;margin-bottom:.35rem"><span id="mi2">⭕</span><span style="flex:1;font-size:.83rem;font-weight:700;color:#44403c">Leer 5 woorden</span><span style="font-size:.7rem;font-weight:800;background:#FEF3D0;color:#D97706;border-radius:999px;padding:.15rem .55rem">+15 XP</span></div>
-    <div id="mr3" style="display:flex;align-items:center;gap:.65rem;padding:.6rem .75rem;border-radius:1rem;background:#f8f8f6"><span id="mi3">⭕</span><span style="flex:1;font-size:.83rem;font-weight:700;color:#44403c">Oefen spreken</span><span style="font-size:.7rem;font-weight:800;background:#FEF3D0;color:#D97706;border-radius:999px;padding:.15rem .55rem">+25 XP</span></div>
-  </div>
-
-  <div class="card" style="margin:.8rem 1rem 0;overflow:hidden">
-    <div style="background:linear-gradient(135deg,#F59E0B,#EA580C);padding:.65rem 1rem"><b style="color:#fff;font-size:.9rem">🗺️ Marokko Avontuur</b><p style="color:rgba(255,255,255,.8);font-size:.7rem;font-weight:700">Ontgrendel nieuwe steden!</p></div>
-    <div style="background:linear-gradient(180deg,#f0f9ff,#fffbeb);padding:.9rem 1rem;display:flex;align-items:center">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:.2rem"><div style="width:2.4rem;height:2.4rem;border-radius:50%;background:#F59E0B;border:2px solid #D97706;box-shadow:0 0 0 4px rgba(245,158,11,.22);display:flex;align-items:center;justify-content:center;font-size:1.2rem">⚓</div><span style="font-size:.65rem;font-weight:900;color:#D97706">Nador</span><span style="font-size:.58rem;background:#F59E0B;color:#fff;padding:.1rem .4rem;border-radius:999px;font-weight:900">★ Nu</span></div>
-      <div style="flex:1;height:2px;border-top:2px dashed #FCD34D;margin:0 .35rem;position:relative;top:-.5rem"></div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:.2rem;opacity:.5"><div style="width:2.4rem;height:2.4rem;border-radius:50%;background:#e7e5e4;border:2px solid #d6d3d1;display:flex;align-items:center;justify-content:center;font-size:1.2rem">🔒</div><span style="font-size:.65rem;font-weight:700;color:#a8a29e">Tanger</span></div>
-      <div style="flex:1;height:2px;border-top:2px dashed #e7e5e4;margin:0 .35rem;position:relative;top:-.5rem;opacity:.5"></div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:.2rem;opacity:.35"><div style="width:2.4rem;height:2.4rem;border-radius:50%;background:#e7e5e4;border:2px solid #d6d3d1;display:flex;align-items:center;justify-content:center;font-size:1.2rem">🔒</div><span style="font-size:.65rem;font-weight:700;color:#a8a29e">Fez</span></div>
-      <div style="flex:1;height:2px;border-top:2px dashed #e7e5e4;margin:0 .35rem;position:relative;top:-.5rem;opacity:.3"></div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:.2rem;opacity:.22"><div style="width:2.4rem;height:2.4rem;border-radius:50%;background:#e7e5e4;border:2px solid #d6d3d1;display:flex;align-items:center;justify-content:center;font-size:1.2rem">🔒</div><span style="font-size:.65rem;font-weight:700;color:#a8a29e">Marrakech</span></div>
-    </div>
-    <div style="background:#FFFBF0;padding:.4rem;text-align:center;border-top:1.5px solid #FEF3D0;font-size:.7rem;font-weight:800;color:#D97706">📍 Je bent nu in <b>Nador</b></div>
-  </div>
-
-  <div style="display:flex;justify-content:space-between;align-items:center;margin:.9rem 1rem .4rem"><b style="font-size:1rem">Alle modules</b><button class="btn" onclick="go('mods')" style="background:none;color:#D97706;font-size:.82rem;font-weight:800">Alles zien →</button></div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin:0 1rem 1.5rem">
-    <div class="btn card" onclick="startL()" style="padding:.75rem .45rem;text-align:center;cursor:pointer"><div style="font-size:1.9rem">👋</div><div style="font-size:.7rem;font-weight:900;color:#1c1917;margin-top:.25rem">Begroeten</div><div style="height:3px;background:#e7e5e4;border-radius:999px;margin-top:.3rem"></div></div>
-    <div class="card" style="padding:.75rem .45rem;text-align:center;opacity:.55"><div style="font-size:1.9rem">👨‍👩‍👧‍👦</div><div style="font-size:.7rem;font-weight:900;margin-top:.25rem">Familie</div><div style="font-size:.58rem;color:#a8a29e;font-weight:700;margin-top:.15rem">🔒 100 XP</div></div>
-    <div class="card" style="padding:.75rem .45rem;text-align:center;opacity:.4"><div style="font-size:1.9rem">🍽️</div><div style="font-size:.7rem;font-weight:900;margin-top:.25rem">Eten</div><div style="font-size:.58rem;color:#a8a29e;font-weight:700;margin-top:.15rem">🔒 250 XP</div></div>
-    <div class="card" style="padding:.75rem .45rem;text-align:center;opacity:.32"><div style="font-size:1.9rem">🏠</div><div style="font-size:.7rem;font-weight:900;margin-top:.25rem">Thuis</div><div style="font-size:.58rem;color:#a8a29e;font-weight:700;margin-top:.15rem">🔒</div></div>
-    <div class="card" style="padding:.75rem .45rem;text-align:center;opacity:.25"><div style="font-size:1.9rem">🌴</div><div style="font-size:.7rem;font-weight:900;margin-top:.25rem">Vakantie</div><div style="font-size:.58rem;color:#a8a29e;font-weight:700;margin-top:.15rem">🔒</div></div>
-    <div class="card" style="padding:.75rem .45rem;text-align:center;opacity:.18"><div style="font-size:1.9rem">🌙</div><div style="font-size:.7rem;font-weight:900;margin-top:.25rem">Islam</div><div style="font-size:.58rem;color:#a8a29e;font-weight:700;margin-top:.15rem">🔒</div></div>
-  </div>
-</div>
-
-<div id="s-li" class="sc">
-  <div class="topbar"><button class="xb" onclick="ql()">✕</button><div class="pb"><div id="lip" class="pf" style="width:5%"></div></div><span style="font-size:.7rem;font-weight:800;color:#a8a29e;flex-shrink:0" id="lic">0/13</span></div>
-  <div style="flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.8rem 1rem 1.5rem;gap:1.1rem">
-    <div class="flt" style="font-size:5rem">👋</div>
-    <div><h2 style="font-size:1.9rem;font-weight:900">Begroeten</h2><p style="color:#a8a29e;font-weight:700;font-size:.85rem;margin-top:.4rem">Leer hoe je mensen begroet in Arabisch en Darija.</p></div>
-    <div class="card" style="padding:.9rem;width:100%;text-align:left;display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:700;color:#44403c">
-      <b style="display:block;margin-bottom:.2rem;font-size:.88rem">In deze les leer je:</b>
-      <div>📖 5 nieuwe woorden</div><div>👂 3 luisteroefeningen</div><div>🎙️ 3 spreekoefeningen</div><div>💬 1 mini gesprek</div>
-    </div>
-    <button class="btn" onclick="nv()" style="width:100%;background:#F59E0B;color:#fff;border-radius:1.8rem;padding:1.15rem;font-size:1.1rem;box-shadow:0 4px 14px rgba(245,158,11,.42)">🚀 Begin de les!</button>
-  </div>
-</div>
-
-<div id="s-vc" class="sc">
-  <div class="topbar"><button class="xb" onclick="ql()">✕</button><div class="pb"><div id="vp" class="pf" style="width:10%"></div></div><span id="vpc" style="font-size:.7rem;font-weight:800;color:#a8a29e;flex-shrink:0">1/13</span></div>
-  <div style="text-align:center;padding:.6rem 1rem .2rem;font-size:.75rem;font-weight:800;color:#a8a29e"><span id="vi" style="color:#F59E0B">1</span>/5</div>
-  <div style="padding:.2rem .9rem .2rem;display:flex;flex-direction:column;gap:.8rem;flex:1;overflow-y:auto">
-    <div class="card" style="padding:1.3rem;display:flex;flex-direction:column;align-items:center;gap:.7rem">
-      <div id="vem" class="flt" style="font-size:5.5rem">👋</div>
-      <div style="text-align:center"><p style="font-size:.65rem;font-weight:800;color:#a8a29e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem">Nederlands</p><p id="vdu" style="font-size:2rem;font-weight:900">Hallo</p></div>
-      <div style="width:100%;height:1px;background:linear-gradient(90deg,transparent,#FEF3D0,transparent)"></div>
-      <div style="text-align:center"><p style="font-size:.65rem;font-weight:800;color:#a8a29e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem">Arabisch</p><p id="var" class="ar" style="font-size:2.5rem;font-weight:900;color:#D97706;line-height:1.4">مرحبا</p><p id="vtr" style="font-size:.82rem;color:#a8a29e;font-style:italic;font-weight:700;margin-top:.15rem">Marhaba</p></div>
-      <div style="background:#f0fdfa;border-radius:1.1rem;padding:.8rem;width:100%;text-align:center"><p style="font-size:.65rem;font-weight:800;color:#0F766E;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem">Darija</p><p id="vda" class="ar" style="font-size:1.7rem;font-weight:900;color:#0D9488">سلام</p><p id="vdt" style="font-size:.7rem;color:#0F766E;font-style:italic;font-weight:700;margin-top:.1rem">Salam</p></div>
-    </div>
-    <div style="display:flex;gap:.7rem;padding-bottom:.8rem">
-      <button class="btn" onclick="spV()" style="flex:1;background:#0D9488;color:#fff;border-radius:1.2rem;padding:.95rem;font-size:.92rem;box-shadow:0 4px 12px rgba(13,148,136,.35)">🔊 Luister</button>
-      <button id="vnb" class="btn" onclick="nv()" style="flex:1;background:#F59E0B;color:#fff;border-radius:1.2rem;padding:.95rem;font-size:.92rem;box-shadow:0 4px 12px rgba(245,158,11,.4)">Volgende →</button>
-    </div>
-  </div>
-</div>
-
-<div id="s-ls" class="sc">
-  <div class="topbar"><button class="xb" onclick="ql()">✕</button><div class="pb"><div id="lsp" class="pf" style="width:50%"></div></div><span id="lsc" style="font-size:.7rem;font-weight:800;color:#a8a29e;flex-shrink:0">6/13</span></div>
-  <div style="flex:1;overflow-y:auto;padding:.5rem 0 1.5rem">
-    <div style="text-align:center;margin:.4rem 1rem .8rem"><p id="lsl" style="font-size:.7rem;font-weight:800;color:#a8a29e;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem">Luisteroefening 1/3</p><h3 id="lsq" style="font-size:1.2rem;font-weight:900">Wat betekent dit?</h3></div>
-    <div onclick="spl()" style="background:#0D9488;border-radius:1.5rem;margin:0 1rem 1rem;padding:1.3rem;text-align:center;cursor:pointer;box-shadow:0 4px 14px rgba(13,148,136,.35);color:#fff">
-      <div id="lsic" style="font-size:2.5rem">🔊</div>
-      <div id="lstp" style="font-size:1.1rem;font-weight:900;margin-top:.3rem">Tik om te luisteren</div>
-      <div id="lsar" class="ar" style="font-size:1.7rem;font-weight:900;margin-top:.3rem;opacity:.92">مرحبا</div>
-      <div id="lstr" style="font-size:.8rem;font-style:italic;font-weight:700;opacity:.8;margin-top:.2rem">Marhaba</div>
-    </div>
-    <div id="lopts" style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:0 1rem"></div>
-    <div id="lfb" style="display:none;margin:.7rem 1rem 0;border-radius:1.1rem;padding:.85rem;text-align:center;font-weight:900;font-size:.95rem"></div>
-    <button id="lnb" onclick="nl()" style="display:none;width:calc(100% - 2rem);margin:.8rem 1rem 0;background:#F59E0B;color:#fff;border-radius:1.8rem;padding:1.1rem;font-size:1rem;box-shadow:0 4px 14px rgba(245,158,11,.42)" class="btn">Volgende vraag →</button>
-  </div>
-</div>
-
-<div id="s-sp" class="sc">
-  <div class="topbar"><button class="xb" onclick="ql()">✕</button><div class="pb"><div id="spp" class="pf" style="width:72%"></div></div><span id="spc" style="font-size:.7rem;font-weight:800;color:#a8a29e;flex-shrink:0">10/13</span></div>
-  <div style="flex:1;overflow-y:auto;padding:.5rem 0 1.5rem">
-    <div style="text-align:center;margin:.4rem 1rem .6rem"><p id="spl2" style="font-size:.7rem;font-weight:800;color:#a8a29e;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem">Spreek na 1/3</p><h3 id="sppr" style="font-size:1.05rem;font-weight:900">Zeg hallo in het Arabisch!</h3></div>
-    <div style="background:linear-gradient(135deg,#FFFBF0,#FEF9C3);border:1.5px solid #FEF3D0;border-radius:1.6rem;margin:0 1rem;padding:1.2rem;text-align:center">
-      <p id="spdu" style="font-size:1.8rem;font-weight:900;margin-bottom:.3rem">Hallo</p>
-      <p id="spar" class="ar" style="font-size:2.5rem;font-weight:900;color:#D97706;line-height:1.4">مرحبا</p>
-      <p id="sptr" style="font-size:.82rem;color:#a8a29e;font-style:italic;font-weight:700;margin-top:.1rem">Marhaba</p>
-      <div style="display:inline-block;background:#ccfbf1;color:#0F766E;border-radius:999px;padding:.3rem .9rem;font-size:.8rem;font-weight:800;margin-top:.5rem">Darija: <span id="spda" class="ar">سلام</span> <span id="spdt" style="font-style:italic;font-size:.75rem">(Salam)</span></div>
-    </div>
-    <button class="btn" onclick="spnat()" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#f0fdfa;color:#0F766E;border:1.5px solid #99f6e4;border-radius:1.2rem;padding:.7rem;margin:.7rem 1rem;width:calc(100% - 2rem);font-size:.88rem;font-weight:800">🔊 Luister hoe het klinkt</button>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:.65rem;margin:.3rem 0">
-      <div id="micb" onclick="trec()" style="width:5.8rem;height:5.8rem;border-radius:50%;background:#ef4444;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;font-size:.7rem;font-weight:800;color:#fff;cursor:pointer;box-shadow:0 4px 16px rgba(239,68,68,.42);transition:transform .12s">
-        <span style="font-size:1.9rem">🎤</span><span>Opnemen</span>
+        <div style="display:flex;align-items:center;gap:.5rem;margin-top:.2rem"><span id="h-av" style="font-size:2rem">🦁</span><span id="h-name" style="color:#fff;font-size:1.5rem;font-weight:900">Ster!</span></div>
+        <span style="background:rgba(255,255,255,.2);color:#fff;font-size:.72rem;font-weight:800;padding:.2rem .7rem;border-radius:999px;display:inline-block;margin-top:.4rem">Level 1 · Beginner</span>
       </div>
-      <p id="micst" style="font-size:.8rem;font-weight:700;color:#a8a29e;text-align:center">Druk op de microfoon en spreek na!</p>
+      <button class="btn" onclick="go('parent')" style="background:rgba(255,255,255,.2);border-radius:.7rem;width:2.3rem;height:2.3rem;color:#fff;font-size:1rem">⚙️</button>
     </div>
-    <div id="spfb" style="display:none;background:linear-gradient(135deg,#fffbeb,#fef9c3);border:1.5px solid #FEF3D0;border-radius:1.6rem;margin:0 1rem;padding:1rem;text-align:center">
-      <div id="spst" style="display:flex;justify-content:center;gap:.4rem;margin-bottom:.5rem"></div>
-      <p id="spft" style="font-size:1.05rem;font-weight:900;color:#1c1917"></p>
-      <p id="spfs" style="font-size:.8rem;color:#a8a29e;margin-top:.2rem;font-weight:700"></p>
+    <div style="margin-top:.9rem"><div style="display:flex;justify-content:space-between;margin-bottom:.3rem"><span style="color:#fff;font-size:.82rem;font-weight:900">⚡ <span id="h-xp">0</span> XP</span><span style="color:rgba(255,255,255,.7);font-size:.72rem;font-weight:700">Level 2 → 500 XP</span></div>
+    <div class="xpbar"><div id="h-xpfill" class="xpfill" style="width:0%"></div></div></div>
+    <div class="stat3"><div class="statbox"><div class="v">🔥 <span id="h-str">0</span></div><div class="l">Dagreeks</div></div><div class="statbox"><div class="v">📚 <span id="h-wrd">0</span></div><div class="l">Woorden</div></div><div class="statbox"><div class="v">🏆 <span id="h-bad">0</span></div><div class="l">Badges</div></div></div>
+  </div>
+  <button class="btn cta grad" onclick="startLesson()" style="display:block">
+    <div class="bg-em">👋</div>
+    <div style="position:relative"><div class="sub">📅 Dagelijkse les</div><h2>Begroeten</h2><p>Leer hoe je mensen begroet!</p><div class="xpbadge">⚡ +75 XP verdienen</div></div>
+  </button>
+  <div class="card missions" style="margin:0 1rem">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem"><div><b style="font-size:.95rem">🎯 Dagtaken</b><p style="font-size:.72rem;color:#a8a29e;font-weight:700" id="h-mc">0/3 voltooid</p></div></div>
+    <div id="m1r" class="mission-row todo"><span id="m1i">⭕</span><span style="flex:1">Voltooi 1 les</span><span style="font-size:.72rem;font-weight:800;background:#FEF3D0;color:var(--gold2);border-radius:999px;padding:.15rem .6rem">+20 XP</span></div>
+    <div id="m2r" class="mission-row todo"><span id="m2i">⭕</span><span style="flex:1">Leer 5 woorden</span><span style="font-size:.72rem;font-weight:800;background:#FEF3D0;color:var(--gold2);border-radius:999px;padding:.15rem .6rem">+15 XP</span></div>
+    <div id="m3r" class="mission-row todo"><span id="m3i">⭕</span><span style="flex:1">Oefen spreken</span><span style="font-size:.72rem;font-weight:800;background:#FEF3D0;color:var(--gold2);border-radius:999px;padding:.15rem .6rem">+25 XP</span></div>
+  </div>
+  <div class="card" style="margin:.8rem 1rem 0;overflow:hidden">
+    <div style="background:linear-gradient(135deg,var(--gold),var(--terra));padding:.7rem 1rem"><b style="color:#fff">🗺️ Marokko Avontuur</b><p style="color:rgba(255,255,255,.8);font-size:.72rem;font-weight:700">Ontgrendel nieuwe steden!</p></div>
+    <div class="map-row" style="background:linear-gradient(180deg,#f0f9ff,#fffbeb)">
+      <div class="map-city"><div class="city-dot active">⚓</div><div class="city-name active">Nador</div><div style="font-size:.6rem;background:var(--gold);color:#fff;padding:.1rem .4rem;border-radius:999px;font-weight:900;margin-top:.1rem">★ Nu</div></div>
+      <div class="map-line"></div>
+      <div class="map-city"><div class="city-dot locked">🔒</div><div class="city-name">Tanger</div></div>
+      <div class="map-line locked"></div>
+      <div class="map-city"><div class="city-dot locked" style="opacity:.35">🔒</div><div class="city-name">Fez</div></div>
+      <div class="map-line locked" style="opacity:.4"></div>
+      <div class="map-city"><div class="city-dot locked" style="opacity:.25">🔒</div><div class="city-name">Marrakech</div></div>
     </div>
-    <button id="spnb" onclick="nsp()" style="display:none;width:calc(100% - 2rem);margin:.8rem 1rem 0;background:#F59E0B;color:#fff;border-radius:1.8rem;padding:1.1rem;font-size:1rem;box-shadow:0 4px 14px rgba(245,158,11,.42)" class="btn">Volgende →</button>
+    <div style="background:#FFFBF0;padding:.4rem;text-align:center;border-top:1.5px solid #FEF3D0;font-size:.72rem;font-weight:800;color:var(--gold2)">📍 Je bent nu in <b>Nador</b></div>
+  </div>
+  <div class="sec-title" style="display:flex;justify-content:space-between;align-items:center">Alle modules<button class="btn" onclick="go('modules')" style="background:none;color:var(--gold2);font-size:.82rem;font-weight:800">Alles zien →</button></div>
+  <div class="module-grid">
+    <div class="mod-card" onclick="startLesson()"><div class="ico">👋</div><div class="name">Begroeten</div><div style="height:3px;background:#e7e5e4;border-radius:999px;margin-top:.3rem"><div style="height:100%;width:0%;background:var(--gold);border-radius:999px"></div></div></div>
+    <div class="mod-card locked"><div class="ico">👨‍👩‍👧‍👦</div><div class="name">Familie</div><div class="lock-lbl">🔒 100 XP</div></div>
+    <div class="mod-card locked" style="opacity:.4"><div class="ico">🍽️</div><div class="name">Eten</div><div class="lock-lbl">🔒 250 XP</div></div>
+    <div class="mod-card locked" style="opacity:.35"><div class="ico">🏠</div><div class="name">Thuis</div><div class="lock-lbl">🔒 500 XP</div></div>
+    <div class="mod-card locked" style="opacity:.3"><div class="ico">📚</div><div class="name">School</div><div class="lock-lbl">🔒 750 XP</div></div>
+    <div class="mod-card locked" style="opacity:.22"><div class="ico">🌙</div><div class="name">Islam</div><div class="lock-lbl">🔒 2500 XP</div></div>
+  </div>
+  <div style="height:2rem"></div>
+</div>
+
+<!-- LESSON INTRO -->
+<div id="s-l-intro" class="screen">
+  <div class="topbar"><button class="x-btn" onclick="quitLesson()">✕</button><div class="pbar"><div class="pfill" style="width:4%"></div></div><span class="pcnt">0/13</span></div>
+  <div style="flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:2rem 1rem 1.5rem;gap:1.2rem">
+    <div class="flt" style="font-size:5rem">👋</div>
+    <div><h2 style="font-size:2rem;font-weight:900">Begroeten</h2><p style="color:#a8a29e;font-weight:700;margin-top:.4rem">Leer hoe je mensen begroet in Arabisch en Darija.</p></div>
+    <div class="card" style="padding:1rem;width:100%;text-align:left">
+      <b style="font-size:.85rem;display:block;margin-bottom:.5rem">In deze les leer je:</b>
+      <div style="display:flex;flex-direction:column;gap:.35rem;font-size:.85rem;font-weight:700;color:#44403c">
+        <div>📖 5 nieuwe woorden</div><div>👂 3 luisteroefeningen</div><div>🎙️ 3 spreekoefeningen</div><div>💬 1 mini gesprek</div>
+      </div>
+    </div>
+    <button class="btn btn-full" onclick="nv()" style="display:block;text-align:center">🚀 Begin de les!</button>
   </div>
 </div>
 
-<div id="s-dl" class="sc">
-  <div class="topbar"><button class="xb" onclick="ql()">✕</button><div class="pb"><div class="pf" style="width:92%"></div></div><span style="font-size:.7rem;font-weight:800;color:#a8a29e;flex-shrink:0">12/13</span></div>
-  <div style="flex:1;overflow-y:auto;padding:.5rem 1rem 1.5rem">
-    <h3 style="text-align:center;font-size:1.2rem;font-weight:900;margin-bottom:.9rem">💬 Luister en doe mee!</h3>
-    <div id="dlines"></div>
-    <button id="dnb" onclick="ndl()" style="width:100%;background:#0D9488;color:#fff;border-radius:1.5rem;padding:1rem;font-size:1rem;font-weight:900;margin-top:.5rem;box-shadow:0 4px 14px rgba(13,148,136,.35);cursor:pointer" class="btn">Volgende zin →</button>
+<!-- VOCAB -->
+<div id="s-vocab" class="screen">
+  <div class="topbar"><button class="x-btn" onclick="quitLesson()">✕</button><div class="pbar"><div id="vp" class="pfill" style="width:10%"></div></div><span id="vpc" class="pcnt">1/13</span></div>
+  <div class="step-lbl">📖 Nieuwe woorden</div>
+  <div style="flex:1;overflow-y:auto">
+    <div style="text-align:center;color:#a8a29e;font-size:.82rem;font-weight:800;margin:.4rem 0"><span id="vi" style="color:var(--gold)">1</span>/5</div>
+    <div class="card vcrd">
+      <span id="v-em" class="emoji flt">👋</span>
+      <div class="lang-lbl">Nederlands</div><div id="v-du" class="main-word">Hallo</div>
+      <div class="divider"></div>
+      <div class="lang-lbl">Arabisch</div><div id="v-ar" class="ar arabic-word">مرحبا</div><div id="v-tr" class="translit">Marhaba</div>
+      <div class="darija-box"><div class="dlbl">Darija</div><div id="v-da" class="ar dword">سلام</div><div id="v-dt" class="dtrans">Salam</div></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-teal" onclick="spV()">🔊 Luister</button>
+      <button id="vnb" class="btn btn-gold" onclick="nv()">Volgende →</button>
+    </div>
   </div>
 </div>
 
-<div id="s-rw" style="display:none;position:fixed;inset:0;background:linear-gradient(160deg,#F59E0B,#EA580C);flex-direction:column;align-items:center;justify-content:center;z-index:100;padding:1.5rem;text-align:center;color:#fff">
-  <div id="cfc" style="position:absolute;inset:0;overflow:hidden;pointer-events:none"></div>
-  <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:.9rem;width:100%">
+<!-- LISTEN -->
+<div id="s-listen" class="screen">
+  <div class="topbar"><button class="x-btn" onclick="quitLesson()">✕</button><div class="pbar"><div id="lp" class="pfill" style="width:50%"></div></div><span id="lpc" class="pcnt">6/13</span></div>
+  <div class="step-lbl">👂 Luisteren &amp; begrijpen</div>
+  <div style="flex:1;overflow-y:auto;padding:.4rem 0 1.5rem">
+    <div style="text-align:center;margin:.3rem 1rem .8rem"><p id="ll" style="font-size:.72rem;font-weight:800;color:#a8a29e;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem">Luisteroefening 1/3</p><h3 id="lq" style="font-size:1.2rem;font-weight:900">Wat betekent dit?</h3></div>
+    <div class="audio-btn" style="margin:0 1rem 1rem" onclick="spL()"><span id="l-ico" class="big-icon">🔊</span><div id="l-tap" class="big-word">Tik om te luisteren</div><div id="l-ar" class="ar big-word" style="margin-top:.3rem;opacity:.9">مرحبا</div><div id="l-tr" class="small-word">Marhaba</div></div>
+    <div id="l-opts" class="opt-grid"></div>
+    <div id="l-fb" class="fb-box hidden" style="margin-top:.7rem"></div>
+    <button id="l-nxt" class="btn btn-full hidden" onclick="nl()" style="margin-top:.8rem;display:block;text-align:center">Volgende vraag →</button>
+  </div>
+</div>
+
+<!-- SPEAK -->
+<div id="s-speak" class="screen">
+  <div class="topbar"><button class="x-btn" onclick="quitLesson()">✕</button><div class="pbar"><div id="sp-p" class="pfill" style="width:72%"></div></div><span id="sp-c" class="pcnt">10/13</span></div>
+  <div class="step-lbl">🎙️ Jouw beurt om te spreken!</div>
+  <div style="flex:1;overflow-y:auto;padding:.4rem 0 1.5rem">
+    <div style="text-align:center;margin:.3rem 1rem .6rem"><p id="sp-l" style="font-size:.72rem;font-weight:800;color:#a8a29e;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem">Spreek na 1/3</p><h3 id="sp-pr" style="font-size:1.05rem;font-weight:900">Zeg hallo in het Arabisch!</h3></div>
+    <div class="speak-card"><div id="sp-du" class="s-dutch">Hallo</div><div id="sp-ar" class="ar s-arabic">مرحبا</div><div id="sp-tr" class="s-trans">Marhaba</div><div class="darija-chip">Darija: <span id="sp-da" class="ar">سلام</span> <span id="sp-dt" style="font-style:italic;font-weight:700;font-size:.75rem">(Salam)</span></div></div>
+    <button class="btn" onclick="spNat()" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#f0fdfa;color:var(--teal2);border:1.5px solid #99f6e4;border-radius:var(--r);padding:.7rem;margin:.7rem 1rem;width:calc(100% - 2rem);font-size:.88rem;font-weight:800">🔊 Luister hoe het klinkt</button>
+    <div class="mic-wrap">
+      <div id="mic-btn" class="mic-btn idle" onclick="toggleRec()"><span style="font-size:2rem">🎤</span><span>Opnemen</span></div>
+      <div id="mic-st" class="mic-status">Druk op de microfoon en spreek na!</div>
+    </div>
+    <div id="sp-fb" class="fb-stars hidden" style="margin-top:.5rem">
+      <div id="sp-stars" class="stars-row"></div>
+      <div id="sp-ft" class="fbt"></div>
+      <div id="sp-fs" class="fbs"></div>
+    </div>
+    <button id="sp-nxt" class="btn btn-full hidden" onclick="nsp()" style="margin-top:.8rem;display:block;text-align:center">Volgende →</button>
+  </div>
+</div>
+
+<!-- DIALOGUE -->
+<div id="s-dial" class="screen">
+  <div class="topbar"><button class="x-btn" onclick="quitLesson()">✕</button><div class="pbar"><div class="pfill" style="width:92%"></div></div><span class="pcnt">12/13</span></div>
+  <div class="step-lbl">💬 Mini gesprek</div>
+  <div style="flex:1;overflow-y:auto;padding:.4rem 1rem 1.5rem">
+    <h3 style="text-align:center;font-size:1.2rem;font-weight:900;margin-bottom:.9rem">Luister en doe mee!</h3>
+    <div id="dial-lines"></div>
+    <button id="dial-nxt" class="btn btn-teal-full btn-full" onclick="ndl()" style="display:block;text-align:center;margin-top:.5rem">Volgende zin →</button>
+  </div>
+</div>
+
+<!-- REWARD (overlay) -->
+<div id="s-reward" class="reward-screen hidden">
+  <div id="conf" style="position:absolute;inset:0;pointer-events:none;overflow:hidden"></div>
+  <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:100%">
     <div style="font-size:5.5rem;animation:pop .5s .2s cubic-bezier(.175,.885,.32,1.275) backwards">🏆</div>
-    <h1 style="font-size:2.4rem;font-weight:900">Les Voltooid!</h1>
-    <p style="font-size:1.05rem;opacity:.85;font-weight:700">Begroeten</p>
-    <div id="rwst" style="display:flex;justify-content:center;gap:.7rem"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;width:100%;max-width:340px">
-      <div style="background:rgba(255,255,255,.2);border-radius:1.2rem;padding:.9rem;text-align:center"><div style="font-size:1.4rem;font-weight:900">⚡ +75</div><p style="font-size:.78rem;opacity:.8;font-weight:700">XP verdiend</p></div>
-      <div style="background:rgba(255,255,255,.2);border-radius:1.2rem;padding:.9rem;text-align:center"><div style="font-size:1.4rem;font-weight:900">📚 5</div><p style="font-size:.78rem;opacity:.8;font-weight:700">Woorden geleerd</p></div>
+    <h1>Les Voltooid!</h1><div class="sub">Begroeten</div>
+    <div class="r-stars" id="r-stars"></div>
+    <div class="stats2">
+      <div class="s"><div class="sv">⚡ +75</div><div class="sl">XP verdiend</div></div>
+      <div class="s"><div class="sv">📚 5</div><div class="sl">Woorden geleerd</div></div>
     </div>
-    <div style="background:rgba(255,255,255,.18);border-radius:1.2rem;padding:.9rem;width:100%;max-width:340px;font-size:.9rem;font-weight:700">🎯 Je bent geweldig!<br><span style="font-size:.8rem;opacity:.85">Blijf oefenen en word een Arabisch ster! ⭐</span></div>
-    <button class="btn" onclick="finL()" style="background:#fff;color:#D97706;border-radius:1.8rem;padding:1.1rem 2rem;font-size:1.1rem;font-weight:900;width:100%;max-width:340px;box-shadow:0 4px 16px rgba(0,0,0,.12)">🏠 Naar huis</button>
+    <div class="enc-box">🎯 Je bent geweldig!<br><span style="font-size:.8rem;opacity:.85">Blijf oefenen en word een Arabisch ster! ⭐</span></div>
+    <button class="btn btn-home" onclick="finLesson()">🏠 Naar huis</button>
   </div>
 </div>
 
-<div id="s-mods" class="sc" style="overflow-y:auto">
-  <div class="hdr"><div style="display:flex;align-items:center;gap:.7rem"><button class="btn" onclick="go('home')" style="background:rgba(255,255,255,.2);color:#fff;border-radius:.7rem;width:2.2rem;height:2.2rem;font-size:1rem">←</button><div><h1>Alle Modules</h1><p>9 thema's om te ontdekken</p></div></div></div>
-  <div style="padding:1rem;display:flex;flex-direction:column;gap:.7rem">
-    <div class="btn card" onclick="startL()" style="display:flex;align-items:center;gap:.85rem;padding:1rem;cursor:pointer">
-      <div style="width:3.5rem;height:3.5rem;border-radius:1.1rem;background:#FEF3D0;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0">👋</div>
-      <div style="flex:1"><div style="font-size:.93rem;font-weight:900">Begroeten</div><div style="font-size:.75rem;color:#a8a29e;font-weight:700">Leer hoe je mensen begroet</div><div style="height:3px;background:#e7e5e4;border-radius:999px;margin-top:.4rem;width:100%"></div></div><span style="font-size:1.2rem">▶️</span>
-    </div>
-    <div class="card" style="display:flex;align-items:center;gap:.85rem;padding:1rem;opacity:.55">
-      <div style="width:3.5rem;height:3.5rem;border-radius:1.1rem;background:#ffedd5;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0">👨‍👩‍👧‍👦</div>
-      <div><div style="font-size:.93rem;font-weight:900">Familie</div><div style="font-size:.72rem;font-weight:800;color:#a8a29e;margin-top:.2rem">🔒 Vereist 100 XP</div></div>
-    </div>
-    <div class="card" style="display:flex;align-items:center;gap:.85rem;padding:1rem;opacity:.42">
-      <div style="width:3.5rem;height:3.5rem;border-radius:1.1rem;background:#ccfbf1;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0">🍽️</div>
-      <div><div style="font-size:.93rem;font-weight:900">Eten &amp; Drinken</div><div style="font-size:.72rem;font-weight:800;color:#a8a29e;margin-top:.2rem">🔒 Vereist 250 XP</div></div>
-    </div>
-    <div class="card" style="display:flex;align-items:center;gap:.85rem;padding:1rem;opacity:.3"><div style="width:3.5rem;height:3.5rem;border-radius:1.1rem;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0">🏠</div><div><div style="font-size:.93rem;font-weight:900">Thuis</div><div style="font-size:.72rem;font-weight:800;color:#a8a29e;margin-top:.2rem">🔒 Vereist 500 XP</div></div></div>
-    <div class="card" style="display:flex;align-items:center;gap:.85rem;padding:1rem;opacity:.22"><div style="width:3.5rem;height:3.5rem;border-radius:1.1rem;background:#d1fae5;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0">🌴</div><div><div style="font-size:.93rem;font-weight:900">Vakantie Marokko</div><div style="font-size:.72rem;font-weight:800;color:#a8a29e;margin-top:.2rem">🔒 Vereist 1500 XP</div></div></div>
-    <div style="height:.5rem"></div>
+<!-- MODULES -->
+<div id="s-modules" class="screen">
+  <div class="hdr grad"><div style="display:flex;align-items:center;gap:.7rem"><button class="btn" onclick="go('home')" style="background:rgba(255,255,255,.2);color:#fff;border-radius:.7rem;width:2.2rem;height:2.2rem;font-size:1rem">←</button><div><h1>Alle Modules</h1><p>9 thema's om te ontdekken</p></div></div></div>
+  <div class="modules-list scroll">
+    <div class="mod-row" onclick="startLesson()"><div class="m-ico" style="background:#FEF3D0">👋</div><div><div class="m-title">Begroeten</div><div class="m-desc">Leer hoe je mensen begroet</div><div style="height:3px;background:#e7e5e4;border-radius:999px;margin-top:.4rem;width:120px"><div style="height:100%;width:0%;background:var(--gold);border-radius:999px"></div></div></div><span style="margin-left:auto;font-size:1.2rem">▶️</span></div>
+    <div class="mod-row locked"><div class="m-ico" style="background:#ffedd5">👨‍👩‍👧‍👦</div><div><div class="m-title">Familie</div><div class="m-desc">Praat over je familie</div><div class="m-lock">🔒 Vereist 100 XP</div></div></div>
+    <div class="mod-row locked"><div class="m-ico" style="background:#ccfbf1">🍽️</div><div><div class="m-title">Eten &amp; Drinken</div><div class="m-desc">Bestel eten in het Arabisch</div><div class="m-lock">🔒 Vereist 250 XP</div></div></div>
+    <div class="mod-row locked" style="opacity:.45"><div class="m-ico" style="background:#ede9fe">🏠</div><div><div class="m-title">Thuis</div><div class="m-lock">🔒 Vereist 500 XP</div></div></div>
+    <div class="mod-row locked" style="opacity:.38"><div class="m-ico" style="background:#dbeafe">📚</div><div><div class="m-title">School</div><div class="m-lock">🔒 Vereist 750 XP</div></div></div>
+    <div class="mod-row locked" style="opacity:.3"><div class="m-ico" style="background:#d1fae5">🌴</div><div><div class="m-title">Vakantie Marokko</div><div class="m-lock">🔒 Vereist 1500 XP</div></div></div>
+    <div class="mod-row locked" style="opacity:.25"><div class="m-ico" style="background:#fef3c7">👴👵</div><div><div class="m-title">Opa &amp; Oma</div><div class="m-lock">🔒 Vereist 2000 XP</div></div></div>
+    <div class="mod-row locked" style="opacity:.2"><div class="m-ico" style="background:#e0e7ff">🌙</div><div><div class="m-title">Islamitische Woorden</div><div class="m-lock">🔒 Vereist 2500 XP</div></div></div>
+    <div style="height:1.5rem"></div>
   </div>
 </div>
 
-<div id="s-par" class="sc" style="overflow-y:auto">
-  <div style="background:linear-gradient(135deg,#3b3b3b,#1c1c1c);padding:3rem 1.1rem 1.2rem">
-    <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem"><button class="btn" onclick="go('home')" style="background:rgba(255,255,255,.12);color:#fff;border-radius:.7rem;width:2.2rem;height:2.2rem;font-size:1rem">←</button><div><h1 style="color:#fff;font-size:1.3rem;font-weight:900">Ouder Dashboard</h1><p style="color:rgba(255,255,255,.6);font-size:.8rem;font-weight:700">Voortgang van <span id="pnm">kind</span></p></div></div>
-    <div style="background:rgba(255,255,255,.1);border-radius:1.2rem;padding:.9rem;display:flex;align-items:center;gap:.8rem"><span id="pav" style="font-size:2.5rem">🦁</span><div style="flex:1"><div id="pnm2" style="color:#fff;font-size:1.15rem;font-weight:900">Ster</div><div style="color:rgba(255,255,255,.6);font-size:.78rem;font-weight:700">Level 1 · Beginner · 📍 Nador</div></div><div style="text-align:right"><div id="pxp" style="color:#FCD34D;font-size:1.4rem;font-weight:900">0</div><div style="color:rgba(255,255,255,.5);font-size:.7rem;font-weight:700">XP totaal</div></div></div>
+<!-- PARENT -->
+<div id="s-parent" class="screen scroll">
+  <div class="hdr grad2">
+    <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem"><button class="btn" onclick="go('home')" style="background:rgba(255,255,255,.12);color:#fff;border-radius:.7rem;width:2.2rem;height:2.2rem;font-size:1rem">←</button><div><h1 style="font-size:1.3rem">Ouder Dashboard</h1><p>Voortgang van <span id="p-nm">kind</span></p></div></div>
+    <div style="background:rgba(255,255,255,.1);border-radius:var(--r);padding:.9rem;display:flex;align-items:center;gap:.8rem"><span id="p-av" style="font-size:2.5rem">🦁</span><div style="flex:1"><div id="p-nm2" style="color:#fff;font-size:1.15rem;font-weight:900">Ster</div><div style="color:rgba(255,255,255,.65);font-size:.78rem;font-weight:700">Level 1 · Beginner · 📍 Nador</div></div><div style="text-align:right"><div id="p-xp" style="color:#FCD34D;font-size:1.4rem;font-weight:900">0</div><div style="color:rgba(255,255,255,.5);font-size:.7rem;font-weight:700">XP totaal</div></div></div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.9rem 1rem 0">
-    <div style="background:#fff7ed;border-radius:1.2rem;padding:.9rem"><span style="font-size:1.3rem">🔥</span><div style="font-size:.68rem;font-weight:800;text-transform:uppercase;color:#ea580c;opacity:.7;margin:.3rem 0 .1rem">Dagreeks</div><div id="ps1" style="font-size:1.6rem;font-weight:900">0</div><div style="font-size:.72rem;color:#a8a29e;font-weight:700">dagen</div></div>
-    <div style="background:#FFFBF0;border-radius:1.2rem;padding:.9rem"><span style="font-size:1.3rem">📚</span><div style="font-size:.68rem;font-weight:800;text-transform:uppercase;color:#D97706;opacity:.7;margin:.3rem 0 .1rem">Woorden</div><div id="ps2" style="font-size:1.6rem;font-weight:900">0</div><div style="font-size:.72rem;color:#a8a29e;font-weight:700">woorden</div></div>
-    <div style="background:#f0fdfa;border-radius:1.2rem;padding:.9rem"><span style="font-size:1.3rem">🎙️</span><div style="font-size:.68rem;font-weight:800;text-transform:uppercase;color:#0D9488;opacity:.7;margin:.3rem 0 .1rem">Spreken</div><div id="ps3" style="font-size:1.6rem;font-weight:900">0</div><div style="font-size:.72rem;color:#a8a29e;font-weight:700">keer</div></div>
-    <div style="background:#f0fdf4;border-radius:1.2rem;padding:.9rem"><span style="font-size:1.3rem">✅</span><div style="font-size:.68rem;font-weight:800;text-transform:uppercase;color:#15803d;opacity:.7;margin:.3rem 0 .1rem">Lessen</div><div id="ps4" style="font-size:1.6rem;font-weight:900">0</div><div style="font-size:.72rem;color:#a8a29e;font-weight:700">lessen</div></div>
+  <div class="parent-stats" style="margin-top:.9rem">
+    <div class="pstat" style="background:#fff7ed"><span style="font-size:1.3rem">🔥</span><div class="pi">Dagreeks</div><div class="pv" id="ps1">0</div><div class="pu">dagen</div></div>
+    <div class="pstat" style="background:#FFFBF0"><span style="font-size:1.3rem">📚</span><div class="pi">Woorden geleerd</div><div class="pv" id="ps2">0</div><div class="pu">woorden</div></div>
+    <div class="pstat" style="background:#f0fdfa"><span style="font-size:1.3rem">🎙️</span><div class="pi">Spreekpogingen</div><div class="pv" id="ps3">0</div><div class="pu">keer</div></div>
+    <div class="pstat" style="background:#f0fdf4"><span style="font-size:1.3rem">✅</span><div class="pi">Lessen voltooid</div><div class="pv" id="ps4">0</div><div class="pu">lessen</div></div>
   </div>
-  <div style="margin:.9rem 1rem;background:linear-gradient(135deg,#FFFBF0,#FEF9C3);border:1.5px solid #FEF3D0;border-radius:1.6rem;padding:1.1rem">
-    <h3 style="font-size:.95rem;font-weight:900;margin-bottom:.3rem">💡 Oefen vandaag thuis</h3>
+  <div class="tip-box">
+    <h3>💡 Oefen vandaag thuis</h3>
     <p style="font-size:.8rem;color:#78716c;font-weight:700">Stel deze vraag aan uw kind:</p>
-    <div style="background:#fff;border-radius:1.1rem;padding:.85rem;border:1.5px solid #FEF3D0;margin-top:.6rem;text-align:center">
-      <p style="font-size:.85rem;font-weight:800;color:#44403c;margin-bottom:.45rem;font-style:italic">"Hoe zeg je hallo in het Arabisch?"</p>
-      <div class="ar" style="font-size:1.8rem;font-weight:900;color:#D97706">مرحبا</div>
+    <div class="tip-inner">
+      <div class="tip-q">"Hoe zeg je hallo in het Arabisch?"</div>
+      <div class="ar" style="font-size:1.8rem;font-weight:900;color:var(--gold2)">مرحبا</div>
       <div style="font-size:.82rem;color:#a8a29e;font-style:italic;font-weight:700;margin-top:.2rem">Marhaba</div>
     </div>
   </div>
-  <div style="margin:0 1rem 1.5rem;background:#f0fdfa;border:1.5px solid #99f6e4;border-radius:1.6rem;padding:1rem">
-    <h3 style="font-size:.9rem;font-weight:900;color:#0F766E;margin-bottom:.45rem">📋 Tips voor ouders</h3>
-    <div style="font-size:.8rem;font-weight:700;color:#0F766E;display:flex;flex-direction:column;gap:.35rem">
+  <div style="margin:0 1rem 1rem;background:#f0fdfa;border:1.5px solid #99f6e4;border-radius:var(--r2);padding:1rem">
+    <h3 style="font-size:.9rem;font-weight:900;color:var(--teal2);margin-bottom:.5rem">📋 Tips voor ouders</h3>
+    <div style="font-size:.8rem;font-weight:700;color:var(--teal2);display:flex;flex-direction:column;gap:.4rem">
       <div>• Oefen dagelijks 5–15 minuten voor het beste resultaat</div>
       <div>• Spreek thuis ook Arabisch/Darija om het te versterken</div>
       <div>• Vier kleine successen — elke les is een overwinning!</div>
     </div>
   </div>
+  <div style="height:1.5rem"></div>
 </div>
 
 <script>
-const VC=[
+const VOCAB=[
   {du:'Hallo',ar:'مرحبا',da:'سلام',tr:'Marhaba',dt:'Salam',em:'👋'},
   {du:'Hoe gaat het?',ar:'كيف حالك؟',da:'لاباس؟',tr:'Kayfa haluk?',dt:'Labas?',em:'🤔'},
   {du:'Goed, dank je',ar:'بخير، شكراً',da:'لاباس الحمدلله',tr:'Bikheir, shukran',dt:'Labas hamdullah',em:'😊'},
@@ -359,40 +477,43 @@ const GOALS=[
   {id:'vakantie',em:'🌴',t:'Vakantie in Marokko',s:'Overleef in Marokko'},
   {id:'familie',em:'👨‍👩‍👧',t:'Met familie praten',s:'Praat met opa en oma'},
 ];
-const AVS=[['🦁','🦊','🐬','🦋','🐢'],['🦅','🐨','🦒','🐙','🦜']];
-let S={nm:'',av:'🦁',xp:0,str:0,wrd:0,spk:0,les:0,vi:0,li:0,si:0,di:0,la:0,sd:0,rs:'idle'};
-const sv=()=>{try{localStorage.setItem('aa3',JSON.stringify(S))}catch(e){}};
-const ld=()=>{try{const d=localStorage.getItem('aa3');if(d){Object.assign(S,JSON.parse(d));return true}}catch(e){}return false};
-function go(id){document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));const el=document.getElementById('s-'+id);if(el)el.classList.add('on');if(id==='home')uh();if(id==='par')up();}
-function t(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
-function spk(tx){if(!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(tx);u.lang='ar';u.rate=.8;speechSynthesis.cancel();speechSynthesis.speak(u);}
-function uh(){t('hav',S.av);t('hnm',S.nm+'!');t('hxp',S.xp);t('hstr',S.str);t('hwrd',S.wrd);t('hles',S.les);document.getElementById('hxpf').style.width=Math.min(100,(S.xp%500)/5)+'%';um('mr1','mi1',S.les>=1);um('mr2','mi2',S.wrd>=5);um('mr3','mi3',S.spk>=1);t('hmc',[S.les>=1,S.wrd>=5,S.spk>=1].filter(Boolean).length+'/3 voltooid');}
-function um(rid,iid,done){const r=document.getElementById(rid);if(done){r.style.background='#f0fdf4';document.getElementById(iid).textContent='✅';}else{r.style.background='#f8f8f6';document.getElementById(iid).textContent='⭕';}}
-function up(){t('pnm',S.nm);t('pnm2',S.nm);t('pav',S.av);t('pxp',S.xp);t('ps1',S.str);t('ps2',S.wrd);t('ps3',S.spk);t('ps4',S.les);}
-function buildAv(){AVS.forEach((row,ri)=>{const el=document.getElementById('avg');if(ri===0)el.innerHTML='';const rw=document.createElement('div');rw.style.cssText='display:flex;gap:.7rem;justify-content:center';row.forEach(a=>{const b=document.createElement('button');b.className='btn';b.style.cssText='width:3.2rem;height:3.2rem;border-radius:.9rem;border:2.5px solid #FEF3D0;background:#FFFBF0;font-size:1.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s';b.textContent=a;if(a===S.av)b.style.cssText+='background:#F59E0B;border-color:#D97706;transform:scale(1.1);box-shadow:0 4px 12px rgba(245,158,11,.4)';b.onclick=()=>{S.av=a;document.getElementById('avp').textContent=a;document.querySelectorAll('#avg button').forEach(x=>{x.style.background='#FFFBF0';x.style.borderColor='#FEF3D0';x.style.transform='';x.style.boxShadow='';});b.style.background='#F59E0B';b.style.borderColor='#D97706';b.style.transform='scale(1.1)';b.style.boxShadow='0 4px 12px rgba(245,158,11,.4)';};rw.appendChild(b);});document.getElementById('avg').appendChild(rw);});}
-function buildGoals(){const gl=document.getElementById('gl');gl.innerHTML='';GOALS.forEach(g=>{const d=document.createElement('div');d.style.cssText='display:flex;align-items:center;gap:.75rem;padding:.85rem;border:2px solid #e7e5e4;border-radius:1.1rem;background:#fff;margin-bottom:.45rem;cursor:pointer;transition:all .15s;text-align:left';d.innerHTML='<span style="font-size:1.75rem">'+g.em+'</span><div><div style="font-size:.88rem;font-weight:900;color:#1c1917">'+g.t+'</div><div style="font-size:.72rem;font-weight:700;color:#a8a29e">'+g.s+'</div></div>';d.onclick=()=>{S.goal=g.id;document.querySelectorAll('#gl>div').forEach(x=>{x.style.borderColor='#e7e5e4';x.style.background='#fff';});d.style.borderColor='#F59E0B';d.style.background='#FFFBF0';document.getElementById('gn').disabled=false;document.getElementById('gn').style.opacity='1';};gl.appendChild(d);});}
-function goAv(){S.nm=document.getElementById('n-in').value.trim()||'Arabisch Ster';buildAv();go('av');}
-function goGoal(){buildGoals();go('goal');}
-function goReady(){t('rt','Welkom, '+S.nm+'! 🎉');document.getElementById('rav').textContent=S.av;go('rd');}
-function startApp(){S.str=1;sv();go('home');}
-function startL(){S.vi=0;S.li=0;S.si=0;S.di=0;go('li');}
-function ql(){if(confirm('Les verlaten?'))go('home');}
-function nv(){if(S.vi<VC.length){const w=VC[S.vi],p=Math.round(((S.vi+1)/13)*100);document.getElementById('vem').textContent=w.em;t('vi',S.vi+1);t('vdu',w.du);document.getElementById('var').textContent=w.ar;t('vtr',w.tr);document.getElementById('vda').textContent=w.da;t('vdt',w.dt);document.getElementById('vp').style.width=p+'%';t('vpc',(S.vi+2)+'/13');document.getElementById('vnb').textContent=S.vi<VC.length-1?'Volgende →':'Klaar! →';S.vi++;go('vc');}else{S.li=0;ll(0);go('ls');}}
-function spV(){spk(VC[Math.max(0,S.vi-1)].ar);}
-function ll(i){const q=LQ[i],p=Math.round(((6+i)/13)*100);t('lsl','Luisteroefening '+(i+1)+'/3');t('lsq',q.q);document.getElementById('lsar').textContent=q.ar;t('lstr',q.tr);S.la=0;['lfb','lnb'].forEach(id=>document.getElementById(id).style.display='none');document.getElementById('lsp').style.width=p+'%';t('lsc',(6+i)+'/13');const og=document.getElementById('lopts');og.innerHTML='';q.opts.forEach((o,idx)=>{const b=document.createElement('button');b.className='btn';b.style.cssText='padding:.85rem .4rem;border-radius:1.1rem;border:2px solid #FEF3D0;background:#fff;cursor:pointer;text-align:center;font-weight:900;font-size:.85rem;color:#1c1917;transition:all .15s';b.textContent=o.t;b.onclick=()=>ansL(idx,o.c,q);og.appendChild(b);});}
-function spl(){const q=LQ[S.li];spk(q.ar);t('lstp','Luisteren...');setTimeout(()=>t('lstp','Tik om te luisteren'),2000);}
-function ansL(idx,cor,q){if(S.la)return;S.la=1;document.getElementById('lopts').querySelectorAll('button').forEach((b,i)=>{b.onclick=null;if(q.opts[i].c){b.style.background='#f0fdf4';b.style.borderColor='#4ade80';b.style.color='#166534';}else if(i===idx&&!cor){b.style.background='#fef2f2';b.style.borderColor='#f87171';b.style.color='#991b1b';}else b.style.opacity='.4';});const fb=document.getElementById('lfb');fb.style.display='block';if(cor){fb.style.background='#f0fdf4';fb.style.color='#15803d';fb.textContent=['Super goed! 🌟','Geweldig! 🎉','Fantastisch! ✨'][S.li%3];}else{fb.style.background='#fffbeb';fb.style.color='#92400e';fb.textContent='Bijna! Antwoord: '+q.opts.find(o=>o.c).t;}const nb=document.getElementById('lnb');nb.style.display='block';nb.textContent=S.li<2?'Volgende vraag →':'Doorgaan →';}
-function nl(){S.li++;S.li<LQ.length?ll(S.li):(S.si=0,ls(0),go('sp'));}
-function ls(i){const e=SP[i],p=Math.round(((9+i)/13)*100);t('spl2','Spreek na '+(i+1)+'/3');t('sppr',e.pr);t('spdu',e.du);document.getElementById('spar').textContent=e.ar;t('sptr',e.tr);document.getElementById('spda').textContent=e.da;t('spdt','('+e.dt+')');document.getElementById('spp').style.width=p+'%';t('spc',(9+i)+'/13');S.sd=0;S.rs='idle';['spfb','spnb'].forEach(id=>document.getElementById(id).style.display='none');const mb=document.getElementById('micb');mb.style.background='#ef4444';mb.style.animation='';mb.innerHTML='<span style="font-size:1.9rem">🎤</span><span style="font-size:.7rem;font-weight:800">Opnemen</span>';t('micst','Druk op de microfoon en spreek na!');}
-function spnat(){spk(SP[S.si].ar);}
-function trec(){if(S.rs==='idle'){S.rs='rec';const mb=document.getElementById('micb');mb.style.background='#ef4444';mb.style.animation='rp 1.5s ease-in-out infinite';mb.innerHTML='<div style="width:1.3rem;height:1.3rem;background:#fff;border-radius:3px"></div><span style="font-size:.7rem;font-weight:800">Stop</span>';t('micst','🔴 Opname bezig...');if(navigator.mediaDevices?.getUserMedia)navigator.mediaDevices.getUserMedia({audio:true}).then(s=>{const mr=new MediaRecorder(s);mr.start();setTimeout(()=>{mr.stop();s.getTracks().forEach(t=>t.stop());},2200);}).catch(()=>{});setTimeout(()=>{if(S.rs==='rec')drec();},2500);}else if(S.rs==='rec')drec();}
-function drec(){S.rs='done';S.sd=1;S.spk++;const mb=document.getElementById('micb');mb.style.background='#F59E0B';mb.style.animation='';mb.innerHTML='<span style="font-size:1.9rem">🎤</span><span style="font-size:.7rem;font-weight:800">Opnieuw</span>';t('micst','✅ Opname klaar!');const fbs=[{s:3,t:'Top uitgesproken! 🌟🌟🌟',sb:'Geweldig!'},{s:3,t:'Bijna perfect! ⭐⭐⭐',sb:'Fantastisch gedaan!'},{s:2,t:'Goed geprobeerd! ⭐⭐',sb:'Nog één keer oefenen!'},{s:2,t:'Heel goed! ⭐⭐',sb:'Je wordt steeds beter!'}];const fb=fbs[Math.floor(Math.random()*fbs.length)];document.getElementById('spst').innerHTML=[0,1,2].map(i=>'<span style="font-size:2rem">'+(i<fb.s?'⭐':'☆')+'</span>').join('');t('spft',fb.t);t('spfs',fb.sb);document.getElementById('spfb').style.display='block';const nb=document.getElementById('spnb');nb.style.display='block';nb.textContent=S.si<2?'Volgende →':'Doorgaan →';}
-function nsp(){S.si++;S.si<SP.length?(ls(S.si)):(S.di=0,document.getElementById('dlines').innerHTML='',go('dl'),ndl());}
-function ndl(){if(S.di>=DL.length){showr();return;}const ln=DL[S.di],ac=ln.sp==='adult';const d=document.createElement('div');d.style.cssText='border-radius:1.1rem;padding:.9rem;margin-bottom:.6rem;animation:si .3s ease;border:1.5px solid '+(ac?'#99f6e4':'#FEF3D0')+';background:'+(ac?'#f0fdfa':'#fffbeb');d.innerHTML='<div style="font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:'+(ac?'#0F766E':'#D97706')+'">'+ln.nm+(ln.sp==='child'?'<span style="background:#fde68a;color:#92400e;border-radius:999px;padding:.1rem .5rem;font-size:.6rem;font-weight:900;margin-left:.4rem">Jij!</span>':'')+'</div><div class="ar" style="font-size:1.3rem;font-weight:900;color:#1c1917;margin:.25rem 0">'+ln.ar+'</div><div style="font-size:.72rem;font-style:italic;color:#a8a29e;font-weight:700;margin-bottom:.25rem">'+ln.tr+'</div><div style="font-size:.82rem;font-weight:700;color:#44403c">🇳🇱 '+ln.du+'</div>';document.getElementById('dlines').appendChild(d);spk(ln.ar);S.di++;if(S.di>=DL.length){document.getElementById('dnb').textContent='Klaar! →';document.getElementById('dnb').style.background='#F59E0B';}}
-function showr(){S.xp+=75;S.wrd+=5;S.les++;S.str=Math.max(1,S.str);sv();spawnc();const rw=document.getElementById('s-rw');rw.style.display='flex';const rs=document.getElementById('rwst');rs.innerHTML='';[0,1,2].forEach(i=>{setTimeout(()=>{const s=document.createElement('span');s.style.cssText='font-size:3rem;animation:pop .4s cubic-bezier(.175,.885,.32,1.275) backwards;animation-delay:'+(i*.28)+'s';s.textContent='⭐';rs.appendChild(s);},300+i*280);});}
-function spawnc(){const c=document.getElementById('cfc');c.innerHTML='';const cs=['#F59E0B','#EA580C','#0D9488','#8B5CF6','#EC4899','#10B981'];for(let i=0;i<45;i++){const el=document.createElement('div');el.style.cssText='position:absolute;left:'+Math.random()*100+'%;top:-15px;width:'+(6+Math.random()*7)+'px;height:'+(6+Math.random()*7)+'px;background:'+cs[i%6]+';border-radius:2px;animation:fall '+(2+Math.random())+'s ease-in '+(Math.random()*.5)+'s forwards';c.appendChild(el);}}
-function finL(){document.getElementById('s-rw').style.display='none';go('home');}
-window.addEventListener('DOMContentLoaded',()=>{const had=ld();setTimeout(()=>had&&S.nm?go('home'):go('ob'),1400);});
+const AVROWS=[['🦁','🦊','🐬','🦋','🐢'],['🦅','🐨','🦒','🐙','🦜']];
+let S={nm:'',av:'🦁',goal:'',xp:0,str:0,wrd:0,spk:0,les:0,vi:0,li:0,si:0,di:0,la:0,sd:0,rs:'idle'};
+function save(){try{localStorage.setItem('aa2',JSON.stringify(S))}catch(e){}}
+function load(){try{const d=localStorage.getItem('aa2');if(d)Object.assign(S,JSON.parse(d));return!!d}catch(e){return false}}
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));const el=document.getElementById('s-'+id);if(el)el.classList.add('on');if(id==='home')uhome();if(id==='parent')upar();}
+function uhome(){_('h-av',S.av);_('h-name',S.nm+'!');_('h-xp',S.xp);_('h-str',S.str);_('h-wrd',S.wrd);_('h-bad',S.les);document.getElementById('h-xpfill').style.width=Math.min(100,(S.xp%500)/5)+'%';um('m1r','m1i',S.les>=1);um('m2r','m2i',S.wrd>=5);um('m3r','m3i',S.spk>=1);_('h-mc',[S.les>=1,S.wrd>=5,S.spk>=1].filter(Boolean).length+'/3 voltooid');}
+function um(rid,iid,done){const r=document.getElementById(rid),i=document.getElementById(iid);if(done){r.className='mission-row done';i.textContent='✅';}else{r.className='mission-row todo';i.textContent='⭕';}}
+function upar(){_('p-nm',S.nm);_('p-nm2',S.nm);_('p-av',S.av);_('p-xp',S.xp);_('ps1',S.str);_('ps2',S.wrd);_('ps3',S.spk);_('ps4',S.les);}
+function _(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
+function spk(t){if(!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(t);u.lang='ar';u.rate=.8;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}
+// ONBOARDING
+function buildAv(){AVROWS.forEach((row,ri)=>{const el=document.getElementById('av-row'+(ri+1));el.innerHTML='';row.forEach(a=>{const b=document.createElement('button');b.className='av-btn btn'+(a===S.av?' sel':'');b.textContent=a;b.onclick=()=>{S.av=a;document.getElementById('av-preview').textContent=a;document.querySelectorAll('.av-btn').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');};el.appendChild(b);});});}
+function buildGoals(){const gl=document.getElementById('goal-list');gl.innerHTML='';GOALS.forEach(g=>{const d=document.createElement('div');d.className='goal-opt btn'+(S.goal===g.id?' sel':'');d.innerHTML=`<span class="g-ico">${g.em}</span><div><div class="g-title">${g.t}</div><div class="g-sub">${g.s}</div></div>`;d.onclick=()=>{S.goal=g.id;document.querySelectorAll('.goal-opt').forEach(x=>x.classList.remove('sel'));d.classList.add('sel');document.getElementById('goal-nxt').disabled=false;};gl.appendChild(d);});}
+function goAv(){S.nm=document.getElementById('name-in').value.trim()||'Arabisch Ster';buildAv();go('ob-av');}
+function goGoal(){buildGoals();go('ob-goal');}
+function goReady(){_('ready-title','Welkom, '+S.nm+'! 🎉');document.getElementById('ready-av').textContent=S.av;go('ob-ready');}
+function startApp(){S.str=1;save();go('home');}
+// LESSON
+function startLesson(){S.vi=0;S.li=0;S.si=0;S.di=0;go('l-intro');}
+function quitLesson(){if(confirm('Les verlaten?'))go('home');}
+function nv(){if(S.vi<VOCAB.length){const w=VOCAB[S.vi],p=Math.round(((S.vi+1)/13)*100);document.getElementById('v-em').textContent=w.em;_('vi',S.vi+1);_('v-du',w.du);document.getElementById('v-ar').textContent=w.ar;_('v-tr',w.tr);document.getElementById('v-da').textContent=w.da;_('v-dt',w.dt);document.getElementById('vp').style.width=p+'%';_('vpc',(S.vi+2)+'/13');document.getElementById('vnb').textContent=S.vi<VOCAB.length-1?'Volgende →':'Klaar! →';S.vi++;go('vocab');}else{S.li=0;llisten(0);go('listen');}}
+function spV(){const w=VOCAB[Math.max(0,S.vi-1)];spk(w.ar);}
+function llisten(i){const q=LQ[i],p=Math.round(((6+i)/13)*100);_('ll','Luisteroefening '+(i+1)+'/3');_('lq',q.q);document.getElementById('l-ar').textContent=q.ar;_('l-tr',q.tr);_('l-ico','🔊');_('l-tap','Tik om te luisteren');S.la=0;document.getElementById('l-fb').classList.add('hidden');document.getElementById('l-nxt').classList.add('hidden');document.getElementById('lp').style.width=p+'%';_('lpc',(6+i)+'/13');const og=document.getElementById('l-opts');og.innerHTML='';q.opts.forEach((o,idx)=>{const b=document.createElement('button');b.className='btn opt-btn';b.innerHTML=o.t+'<span class="ar ar-small">'+q.opts[idx?0:1].ar+'</span>';b.onclick=()=>ansL(idx,o.c,q);og.appendChild(b);});}
+function spL(){const q=LQ[S.li];spk(q.ar);_('l-ico','🎵');_('l-tap','Luisteren...');setTimeout(()=>{_('l-ico','🔊');_('l-tap','Tik om te luisteren');},2000);}
+function ansL(idx,cor,q){if(S.la)return;S.la=1;const bs=document.getElementById('l-opts').querySelectorAll('.opt-btn');bs.forEach((b,i)=>{b.onclick=null;if(q.opts[i].c)b.classList.add('correct');else if(i===idx&&!cor)b.classList.add('wrong');else b.classList.add('dim');});const fb=document.getElementById('l-fb');fb.classList.remove('hidden');if(cor){fb.className='fb-box fb-ok';fb.textContent=['Super goed! 🌟','Geweldig! 🎉','Fantastisch! ✨'][S.li%3];}else{fb.className='fb-box fb-wr';fb.textContent='Bijna! Antwoord: '+q.opts.find(o=>o.c).t;}const nb=document.getElementById('l-nxt');nb.classList.remove('hidden');nb.textContent=S.li<2?'Volgende vraag →':'Doorgaan →';}
+function nl(){S.li++;if(S.li<LQ.length){llisten(S.li);}else{S.si=0;lspeak(0);go('speak');}}
+function lspeak(i){const e=SP[i],p=Math.round(((9+i)/13)*100);_('sp-l','Spreek na '+(i+1)+'/3');_('sp-pr',e.pr);_('sp-du',e.du);document.getElementById('sp-ar').textContent=e.ar;_('sp-tr',e.tr);document.getElementById('sp-da').textContent=e.da;_('sp-dt','('+e.dt+')');document.getElementById('sp-p').style.width=p+'%';_('sp-c',(9+i)+'/13');S.sd=0;S.rs='idle';document.getElementById('sp-fb').classList.add('hidden');document.getElementById('sp-nxt').classList.add('hidden');const mb=document.getElementById('mic-btn');mb.className='mic-btn idle btn';mb.innerHTML='<span style="font-size:2rem">🎤</span><span>Opnemen</span>';_('mic-st','Druk op de microfoon en spreek na!');}
+function spNat(){spk(SP[S.si].ar);}
+function toggleRec(){if(S.rs==='idle'){S.rs='rec';const mb=document.getElementById('mic-btn');mb.className='mic-btn rec btn';mb.innerHTML='<div style="width:1.4rem;height:1.4rem;background:#fff;border-radius:3px"></div><span>Stop</span>';_('mic-st','🔴 Opname bezig...');if(navigator.mediaDevices?.getUserMedia)navigator.mediaDevices.getUserMedia({audio:true}).then(s=>{const mr=new MediaRecorder(s);mr.start();setTimeout(()=>{mr.stop();s.getTracks().forEach(t=>t.stop());},2200);}).catch(()=>{});setTimeout(()=>{if(S.rs==='rec')doneRec();},2500);}else if(S.rs==='rec')doneRec();}
+function doneRec(){S.rs='done';S.sd=1;S.spk++;const mb=document.getElementById('mic-btn');mb.className='mic-btn done btn';mb.innerHTML='<span style="font-size:2rem">🎤</span><span>Opnieuw</span>';_('mic-st','✅ Opname klaar!');const fbs=[{s:3,t:'Top uitgesproken! 🌟🌟🌟',sb:'Geweldig, je klinkt als een native!'},{s:3,t:'Bijna perfect! ⭐⭐⭐',sb:'Fantastisch gedaan!'},{s:2,t:'Goed geprobeerd! ⭐⭐',sb:'Nog één keer oefenen maakt het perfect!'},{s:2,t:'Heel goed! ⭐⭐',sb:'Je wordt steeds beter!'}];const fb=fbs[Math.floor(Math.random()*fbs.length)];document.getElementById('sp-stars').innerHTML=[0,1,2].map(i=>i<fb.s?'<span style="font-size:2rem">⭐</span>':'<span style="font-size:2rem;opacity:.3">☆</span>').join('');_('sp-ft',fb.t);_('sp-fs',fb.sb);document.getElementById('sp-fb').classList.remove('hidden');const nb=document.getElementById('sp-nxt');nb.classList.remove('hidden');nb.textContent=S.si<2?'Volgende →':'Doorgaan →';}
+function nsp(){S.si++;if(S.si<SP.length){lspeak(S.si);}else{S.di=0;document.getElementById('dial-lines').innerHTML='';go('dial');ndl();}}
+function ndl(){if(S.di>=DL.length){showReward();return;}const ln=DL[S.di],ac=ln.sp==='adult';const d=document.createElement('div');d.className='dial-line '+(ac?'dial-adult':'dial-child');d.innerHTML=`<div class="dial-name">${ln.nm}${!ac?'<span class="dial-you">Jij!</span>':''}</div><div class="ar dial-arabic">${ln.ar}</div><div class="dial-trans">${ln.tr}</div><div class="dial-dutch">🇳🇱 ${ln.du}</div>`;document.getElementById('dial-lines').appendChild(d);spk(ln.ar);S.di++;if(S.di>=DL.length){const nb=document.getElementById('dial-nxt');nb.textContent='Klaar! →';nb.style.background='var(--gold)';nb.style.boxShadow='0 4px 14px rgba(245,158,11,.4)';}}
+function showReward(){S.xp+=75;S.wrd+=5;S.les++;S.str=Math.max(1,S.str);save();spawnConf();document.getElementById('s-reward').classList.remove('hidden');const rs=document.getElementById('r-stars');rs.innerHTML='';[0,1,2].forEach((i)=>{setTimeout(()=>{const s=document.createElement('span');s.textContent='⭐';s.style.cssText='font-size:3rem;animation:pop .4s cubic-bezier(.175,.885,.32,1.275) backwards';s.style.animationDelay=(i*.28)+'s';rs.appendChild(s);},300+i*280);});}
+function spawnConf(){const c=document.getElementById('conf');c.innerHTML='';const cols=['#F59E0B','#EA580C','#0D9488','#8B5CF6','#EC4899','#10B981'];for(let i=0;i<45;i++){const el=document.createElement('div');el.className='confetti';el.style.cssText=`left:${Math.random()*100}%;top:-16px;width:${6+Math.random()*7}px;height:${6+Math.random()*7}px;background:${cols[i%cols.length]};animation:fall ${2+Math.random()}s ease-in ${Math.random()*.5}s forwards`;c.appendChild(el);}}
+function finLesson(){document.getElementById('s-reward').classList.add('hidden');go('home');}
+// BOOT
+window.addEventListener('DOMContentLoaded',()=>{const had=load();setTimeout(()=>{if(had&&S.nm){go('home');}else{go('ob-name');}},1400);});
 </script>
 </body>
 </html>
